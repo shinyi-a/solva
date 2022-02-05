@@ -13,15 +13,13 @@ const blockSchema = new Schema({
     required: true,
   },
   status: String,
-  startdate: String,
+  projectmanager: String,
   constructiondate: String,
   TnCdate: String,
-  turnondate: Date,
+  turnondate: String,
   TnCreport_doc: String,
   asbulit_doc: String,
-  timestamps: {
-    createdAt: "created_at",
-  },
+  timestamps: true,
 });
 
 module.exports = mongoose.model("Block", blockSchema);

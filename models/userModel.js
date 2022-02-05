@@ -4,7 +4,10 @@ schema.set("validateBeforeSave", false);
 const SALT_WORK_FACTOR = 10;
 
 const userSchema = new Schema({
-  username: String,
+  username: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
