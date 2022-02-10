@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-schema.set("validateBeforeSave", false);
+const bcrypt = require("bcrypt");
 const SALT_WORK_FACTOR = 10;
 
 const userSchema = new Schema({

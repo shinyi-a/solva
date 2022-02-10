@@ -1,25 +1,31 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-schema.set("validateBeforeSave", false);
 
-const blockSchema = new Schema({
-  postalcode: {
-    type: Number,
-    required: true,
-    unique: true,
+const blockSchema = new Schema(
+  {
+    postalcode: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+    capacity_kwp: {
+      type: String,
+      // required: true,
+    },
+    panels: Number,
+    panelkwp: Number,
+    status: String,
+    projectmanager: String,
+    pendingdate: Date,
+    constructiondate: Date,
+    tncdate: Date,
+    turnondate: Date,
+    tncreport_doc: String,
+    asbulit_doc: String,
   },
-  capacity_kwp: {
-    type: Number,
-    required: true,
-  },
-  status: String,
-  projectmanager: String,
-  constructiondate: String,
-  TnCdate: String,
-  turnondate: String,
-  TnCreport_doc: String,
-  asbulit_doc: String,
-  timestamps: true,
-});
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Block", blockSchema);
