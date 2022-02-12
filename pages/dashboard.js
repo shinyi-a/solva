@@ -1,71 +1,90 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Component } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import Link from "next/link";
+// import { useRouter } from "next/router";
+import { XYPlot, LineSeries } from "react-vis";
 
 const Dashboard = () => {
   const [constructionHDB, setConstructionHDB] = useState([]);
   const [tncHDB, setTnCHDB] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [loadingConstruction, setLoadingConstruction] = useState(false);
+  const [loadingTnC, setLoadingTnC] = useState(false);
+  // const router = useRouter();
 
-  //   const loadConstruction = async () => {
-  //     try {
-  //       const res = await axios.get(
-  //         `${process.env.API_ENDPOINT}/block/construction`
-  //       );
-  //       setConstructionHDB(res.data);
-  //       setLoading(false);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-
-  //   const loadTnC = async () => {
-  //     try {
-  //       const res = await axios.get(`${process.env.API_ENDPOINT}/block/tnc`);
-  //       setTnCHDB(res.data);
-  //       setLoading(false);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-
-  const loadTest = async () => {
+  const loadConstruction = async () => {
     try {
-      const res = await axios.get(`${process.env.API_ENDPOINT}/block/all`);
-      console.log(res.data);
-      setTnCHDB(res.data);
-      setLoading(true);
+      const res = await axios.get(
+        `${process.env.API_ENDPOINT}/block/construction`
+      );
+      setConstructionHDB(res.data);
+      setLoadingConstruction(true);
     } catch (err) {
-      console.log("this is err: " + err);
+      console.log(err);
+    }
+  };
+
+  const loadTnC = async () => {
+    try {
+      const res = await axios.get(`${process.env.API_ENDPOINT}/block/tnc`);
+      setTnCHDB(res.data);
+      setLoadingTnC(true);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   useEffect(() => {
-    // loadConstruction();
-    // loadTnC();
-    loadTest();
+    loadConstruction();
+    loadTnC();
   }, []);
 
-  //   const testdata = tncHDB.map((item) => {
-  //     const testhdb = item.postalcode;
-  //     return <h1>{testhdb}</h1>;
-  //   });
+  // const constructionData = constructionHDB.map((blk) => {
+  //   return (
+  //     <div key={blk._id}>
+  //       <p>{blk.postalcode}</p>
+  //     </div>
+  //   );
+  // });
 
-  // const testdata = tncHDB[0];
-  const testdata = tncHDB.map((blk) => {
-    return (
-      <div key={blk._id}>
-        <p>{blk.postalcode}</p>
-      </div>
-    );
-  });
-  // console.log(tncHDB[1].postalcode);
+  const constructionData = () => (
+    <div>
+      <h2>Construction</h2>
+      <ul>
+        {constructionHDB.map((blk) => (
+          <Link href={`/${blk.postalcode}`} key={blk._id}>
+            <li key={blk._id}> {blk.postalcode} </li>
+          </Link>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const TnCData = () => (
+    <div>
+      <h2>Testing and Commissioning</h2>
+      <ul>
+        {tncHDB.map((blk) => (
+          <Link href={`/${blk.postalcode}`} key={blk._id}>
+            <li key={blk._id}> {blk.postalcode} </li>
+          </Link>
+        ))}
+      </ul>
+    </div>
+  );
+
+  // const tncData = tncHDB.map((blk) => {
+  //   return (
+  //     <div key={blk._id}>
+  //       <p>{blk.postalcode}</p>
+  //     </div>
+  //   );
+  // });
 
   return (
     <>
-      <h1>hello world</h1>
-      {loading ? testdata : <h1>waiting</h1>}
+      <h1>Dashboard</h1>
+      {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
+      {loadingTnC ? TnCData() : <h3>Loading...</h3>}
     </>
   );
 };

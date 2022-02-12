@@ -1,7 +1,13 @@
+import Link from "next/link";
+
 const Header = () => {
   return (
     <header>
-      <span>Solva</span>
+      <Link href="/dashboard">
+        <a>
+          <h1>Solva</h1>
+        </a>
+      </Link>
     </header>
   );
 };
