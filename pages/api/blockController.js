@@ -31,6 +31,33 @@ app.get("/turnon", async (req, res) => {
   res.send(hdb);
 });
 
+app.get("/graph", async (req, res) => {
+  const months = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const dateNow = new Date();
+  const monthNow = months[dateNow.getMonth()];
+  const yearNow = dateNow.getFullYear();
+  let startdate = `${yearNow - 1}-${monthNow}-01T00:00:00.000Z`;
+  let enddate = `${yearNow}-${monthNow}-31T00:00:00.000Z`;
+  const hdb = await Block.find({
+    status: "turnon",
+    turnondate: { $gte: startdate, $lte: enddate },
+  });
+  res.send(hdb);
+});
+
 app.get("/all/:id", async (req, res) => {
   const { id } = req.params;
   const hdb = await Block.find({ username: id });

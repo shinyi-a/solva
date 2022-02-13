@@ -7,8 +7,10 @@ import { XYPlot, LineSeries } from "react-vis";
 const Dashboard = () => {
   const [constructionHDB, setConstructionHDB] = useState([]);
   const [tncHDB, setTnCHDB] = useState([]);
+  const [graphHDB, setGraphHDB] = useState([]);
   const [loadingConstruction, setLoadingConstruction] = useState(false);
   const [loadingTnC, setLoadingTnC] = useState(false);
+  const [loadingGraph, setLoadingGraph] = useState(false);
   // const router = useRouter();
 
   const loadConstruction = async () => {
@@ -33,9 +35,20 @@ const Dashboard = () => {
     }
   };
 
+  const loadGraph = async () => {
+    try {
+      const res = await axios.get(`${process.env.API_ENDPOINT}/block/graph`);
+      setGraphHDB(res.data);
+      setLoadingGraph(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     loadConstruction();
     loadTnC();
+    loadGraph();
   }, []);
 
   // const constructionData = constructionHDB.map((blk) => {
@@ -51,7 +64,7 @@ const Dashboard = () => {
       <h2>Construction</h2>
       <ul>
         {constructionHDB.map((blk) => (
-          <Link href={`/${blk.postalcode}`} key={blk._id}>
+          <Link href={`/${blk.postalcode}`}>
             <li key={blk._id}> {blk.postalcode} </li>
           </Link>
         ))}
@@ -64,7 +77,7 @@ const Dashboard = () => {
       <h2>Testing and Commissioning</h2>
       <ul>
         {tncHDB.map((blk) => (
-          <Link href={`/${blk.postalcode}`} key={blk._id}>
+          <Link href={`/${blk.postalcode}`}>
             <li key={blk._id}> {blk.postalcode} </li>
           </Link>
         ))}
@@ -80,11 +93,30 @@ const Dashboard = () => {
   //   );
   // });
 
+  const graphData = () => (
+    <div>
+      <h2>Graph Data</h2>
+      <ul>
+        {graphHDB.map((blk) => (
+          <>
+            <li key={blk._id}> {blk.postalcode} </li>
+            <p>{blk.turnondate}</p>
+          </>
+          // <Link href={`/${blk.postalcode}`} key={blk._id}>
+          // <li key={blk._id}> {blk.postalcode} </li>
+          // <p>{blk.turnondate}</p>
+          // </Link>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <>
       <h1>Dashboard</h1>
       {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
       {loadingTnC ? TnCData() : <h3>Loading...</h3>}
+      {loadingGraph ? graphData() : <h3>Loading...</h3>}
     </>
   );
 };
