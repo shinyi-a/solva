@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Chart from "chart.js/auto";
+import { Bar } from "react-chartjs-2";
 
-const Graph = () => {
+const TestGraph = () => {
   const [graphHDB, setGraphHDB] = useState([]);
   const [loadingGraph, setLoadingGraph] = useState(false);
   const graphDates = [];
@@ -1273,7 +1275,26 @@ const Graph = () => {
   console.log(graphLabel);
   console.log(graphData);
 
-  return <></>;
+  return (
+    <div>
+      <Bar
+        height={400}
+        width={600}
+        options={{ maintainAspectRatio: false }}
+        data={{
+          labels: graphLabel,
+          datasets: [
+            {
+              label: "No. of Turn On Blocks",
+              data: graphData,
+              backgroundColor: ["pink"],
+              hoverBackgroundColor: ["red"],
+            },
+          ],
+        }}
+      />
+    </div>
+  );
 };
 
-export default Graph;
+export default TestGraph;

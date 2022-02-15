@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-// import Graph from "../components/turnongraph";
+import Graph from "../components/turnongraph";
 
 const Dashboard = () => {
   const [constructionHDB, setConstructionHDB] = useState([]);
@@ -83,7 +83,7 @@ const Dashboard = () => {
       <h1>Dashboard</h1>
       {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
       {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-      {/* <Graph /> */}
+      <Graph />
     </>
   );
 };
