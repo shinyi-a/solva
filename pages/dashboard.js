@@ -1,17 +1,13 @@
-import { useState, useEffect, Component } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-// import { useRouter } from "next/router";
-import { XYPlot, LineSeries } from "react-vis";
+// import Graph from "../components/turnongraph";
 
 const Dashboard = () => {
   const [constructionHDB, setConstructionHDB] = useState([]);
   const [tncHDB, setTnCHDB] = useState([]);
-  const [graphHDB, setGraphHDB] = useState([]);
   const [loadingConstruction, setLoadingConstruction] = useState(false);
   const [loadingTnC, setLoadingTnC] = useState(false);
-  const [loadingGraph, setLoadingGraph] = useState(false);
-  // const router = useRouter();
 
   const loadConstruction = async () => {
     try {
@@ -35,20 +31,9 @@ const Dashboard = () => {
     }
   };
 
-  const loadGraph = async () => {
-    try {
-      const res = await axios.get(`${process.env.API_ENDPOINT}/block/graph`);
-      setGraphHDB(res.data);
-      setLoadingGraph(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     loadConstruction();
     loadTnC();
-    loadGraph();
   }, []);
 
   // const constructionData = constructionHDB.map((blk) => {
@@ -93,30 +78,12 @@ const Dashboard = () => {
   //   );
   // });
 
-  const graphData = () => (
-    <div>
-      <h2>Graph Data</h2>
-      <ul>
-        {graphHDB.map((blk) => (
-          <>
-            <li key={blk._id}> {blk.postalcode} </li>
-            <p>{blk.turnondate}</p>
-          </>
-          // <Link href={`/${blk.postalcode}`} key={blk._id}>
-          // <li key={blk._id}> {blk.postalcode} </li>
-          // <p>{blk.turnondate}</p>
-          // </Link>
-        ))}
-      </ul>
-    </div>
-  );
-
   return (
     <>
       <h1>Dashboard</h1>
       {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
       {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-      {loadingGraph ? graphData() : <h3>Loading...</h3>}
+      {/* <Graph /> */}
     </>
   );
 };
