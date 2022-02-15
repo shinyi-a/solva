@@ -3,7 +3,7 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
-const TestGraph = () => {
+const Graph = () => {
   const [graphHDB, setGraphHDB] = useState([]);
   const [loadingGraph, setLoadingGraph] = useState(false);
   const graphDates = [];
@@ -1297,4 +1297,4 @@ const TestGraph = () => {
   );
 };
 
-export default TestGraph;
+export default Graph;
