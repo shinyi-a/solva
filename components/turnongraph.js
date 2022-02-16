@@ -1272,8 +1272,8 @@ const Graph = () => {
       janBlks,
     ];
   }
-  console.log(graphLabel);
-  console.log(graphData);
+  // console.log(graphLabel);
+  // console.log(graphData);
 
   return (
     <div>
