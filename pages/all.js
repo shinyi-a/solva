@@ -24,7 +24,7 @@ const AllBlocks = () => {
     <div>
       <ul>
         {allHDB.map((blk) => (
-          <Link href={`/${blk.postalcode}`} key={blk._id}>
+          <Link href={`/block/${blk.postalcode}`} key={blk._id}>
             <li key={blk._id}> {blk.postalcode} </li>
           </Link>
         ))}

@@ -49,7 +49,7 @@ const Dashboard = () => {
       <h2>Construction</h2>
       <ul>
         {constructionHDB.map((blk) => (
-          <Link key={blk._id} href={`/${blk.postalcode}`}>
+          <Link key={blk._id} href={`/block/${blk.postalcode}`}>
             <li>{blk.postalcode}</li>
           </Link>
         ))}
@@ -57,12 +57,14 @@ const Dashboard = () => {
     </div>
   );
 
+  console.log(tncHDB);
+
   const TnCData = () => (
     <div>
       <h2>Testing and Commissioning</h2>
       <ul>
         {tncHDB.map((blk) => (
-          <Link key={blk._id} href={`/${blk.postalcode}`}>
+          <Link key={blk._id} href={`/block/${blk.postalcode}`}>
             <li>{blk.postalcode}</li>
           </Link>
         ))}

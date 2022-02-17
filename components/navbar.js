@@ -25,7 +25,7 @@ const NavBar = () => {
       </Link>
       <Link href="/turnon">
         <a>
-          <li>Turn On</li>
+          <li>Turned On</li>
         </a>
       </Link>
     </ul>

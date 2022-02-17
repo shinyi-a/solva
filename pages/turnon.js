@@ -24,7 +24,7 @@ const Turnon = () => {
     <div>
       <ul>
         {allTurnon.map((blk) => (
-          <Link href={`/${blk.postalcode}`} key={blk._id}>
+          <Link href={`/block/${blk.postalcode}`} key={blk._id}>
             <li key={blk._id}> {blk.postalcode} </li>
           </Link>
         ))}
@@ -34,7 +34,7 @@ const Turnon = () => {
 
   return (
     <>
-      <h1>All Turn On Blocks</h1>
+      <h1>All Turned On Blocks</h1>
       {loadingAll ? allData() : <h3>Loading...</h3>}
     </>
   );

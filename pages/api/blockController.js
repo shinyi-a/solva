@@ -58,6 +58,28 @@ app.get("/graph", async (req, res) => {
   res.send(hdb);
 });
 
+app.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    if ((id === undefined) | null) {
+      throw new Error("item name undefined");
+    }
+    const hdb = await Block.find({ postalcode: id });
+    console.log("item: ", hdb);
+    res.send(hdb);
+  } catch (err) {
+    res.status(404).send(err.message);
+    console.log(err);
+  }
+});
+
+// app.get("/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const hdb = await Block.find({ postalcode: id });
+//   res.send(hdb);
+// });
+
 app.get("/all/:id", async (req, res) => {
   const { id } = req.params;
   const hdb = await Block.find({ username: id });
@@ -94,7 +116,7 @@ app.get("/:id", async (req, res) => {
     const { id } = req.params;
     console.log(id);
     if ((id === undefined) | null) {
-      throw new Error("item name undefined");
+      throw new Error("postal code undefined");
     }
     const hdb = await Block.findById(id);
     console.log("hdb: ", hdb);

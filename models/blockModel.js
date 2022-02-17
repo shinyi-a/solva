@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const blockSchema = new Schema(
   {
     postalcode: {
-      type: Number,
-      required: true,
-      unique: true,
+      type: String,
+      // required: true,
+      // unique: true,
     },
     capacity_kwp: {
       type: String,
