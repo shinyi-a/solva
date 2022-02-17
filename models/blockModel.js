@@ -5,8 +5,10 @@ const blockSchema = new Schema(
   {
     postalcode: {
       type: String,
-      // required: true,
-      // unique: true,
+      required: true,
+      minLength: 6,
+      maxLenght: 6,
+      unique: true,
     },
     capacity_kwp: {
       type: String,

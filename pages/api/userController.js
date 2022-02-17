@@ -1,36 +1,11 @@
 const express = require("express");
 const app = express();
 const User = require("./../../models/userModel");
-// const methodOverride = require('method-override')
-// const bcrypt = require('bcrypt')
-// const jwt = require('jsonwebtoken')
+const methodOverride = require("method-override");
+const jwt = require("jsonwebtoken");
 
-// app.use(methodOverride("_method"));
+app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
-
-// Seed data
-// app.get("/seed/hashPW", async (req, res) => {
-//   for (let user of usersSeed) {
-//     let hashPassword = bcrypt.hash(user.password, 10);
-//     user.password = hashPassword;
-
-//     try {
-//       const newSeedUser = await User.create(user);
-//       res.send(newSeedUser);
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// });
-
-// app.get("/seed", async (req, res) => {
-//   try {
-//     const seedUsers = await User.create(usersSeed);
-//     res.send(seedUsers);
-//   } catch (err) {
-//     res.send(err.message);
-//   }
-// });
 
 app.post("/", async (req, res) => {
   console.log(req.body);

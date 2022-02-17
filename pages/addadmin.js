@@ -1,15 +1,31 @@
 import axios from "axios";
 import React, { useState } from "react";
+// import { useRouter } from "next/router";
 
-export default function AddUser() {
+// import { useAuth } from "../context/authcontext";
+// import { auth } from "../firebase";
+// import { getAuth } from "firebase/auth";
+// import app from "../firebase";
+
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+
+export default function AddAdmin() {
   const [signupInput, setSignupInput] = useState({
+    firstname: "",
     email: "",
     password: "",
+    usertype: "",
   });
+  const [firstnameEmpty, setFirstnameEmpty] = useState(null);
   const [emailEmpty, setEmailEmpty] = useState(null);
   const [passwordEmpty, setPasswordEmpty] = useState(null);
+  const [userRoleEmpty, setUserRoleEmpty] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
+  // const router = useRouter();
+
+  //   const { signup } = useAuth();
+  //   const auth = getAuth(app);
 
   //to validate email
   const validateEmail = (email) => {
@@ -33,6 +49,10 @@ export default function AddUser() {
   };
 
   //check if input fields are empty
+  const handleFirstnameBlur = () => {
+    !signupInput.firstname ? setFirstnameEmpty(true) : setFirstnameEmpty(false);
+  };
+
   const handleEmailBlur = () => {
     if (!signupInput.email) {
       setEmailValid(null);
@@ -55,12 +75,18 @@ export default function AddUser() {
     }
   };
 
+  const handleUserBlur = () => {
+    !signupInput.usertype ? setUserRoleEmpty(true) : setUserRoleEmpty(false);
+  };
+
   //post user input
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
+      signupInput.firstname &&
       signupInput.email &&
       signupInput.password &&
+      signupInput.usertype &&
       emailValid &&
       passwordValid
     ) {
@@ -79,6 +105,18 @@ export default function AddUser() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="firstname">Name: </label>
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+        onChange={handleChange}
+        onBlur={handleFirstnameBlur}
+      />
+      <br />
+      {firstnameEmpty ? <span>Please enter name.</span> : ""}
+      <br />
+      <br />
       <label htmlFor="email">Email: </label>
       <input
         type="text"
@@ -113,6 +151,21 @@ export default function AddUser() {
       ) : (
         ""
       )}
+      <br />
+      <br />
+      <label htmlFor="usertype">Select a user role: </label>
+      <select
+        name="usertype"
+        id="usertype"
+        onChange={handleChange}
+        onBlur={handleUserBlur}
+      >
+        <option value="">User role</option>
+        <option value="pm">Staff</option>
+        <option value="audit">Auditor</option>
+      </select>
+      <br />
+      {userRoleEmpty ? <span>Please select a user role.</span> : ""}
       <br />
       <br />
       <input type="submit" name="submitSignup" id="submitSignup" />
