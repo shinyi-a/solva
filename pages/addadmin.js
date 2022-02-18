@@ -161,8 +161,8 @@ export default function AddAdmin() {
         onBlur={handleUserBlur}
       >
         <option value="">User role</option>
-        <option value="pm">Staff</option>
-        <option value="audit">Auditor</option>
+        <option value="Staff">Staff</option>
+        <option value="Auditor">Auditor</option>
       </select>
       <br />
       {userRoleEmpty ? <span>Please select a user role.</span> : ""}

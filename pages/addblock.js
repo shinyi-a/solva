@@ -7,7 +7,7 @@ export default function AddBlock() {
     capacity_kwp: "",
     panels: "",
     panelkwp: "",
-    status: "pending",
+    status: "Pending",
     projectmanager: "",
     pendingdate: new Date(),
     constructiondate: "",

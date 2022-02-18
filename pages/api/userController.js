@@ -49,7 +49,7 @@ app.get("/auditor", async (req, res) => {
   console.log("User Controller: Trying to get users");
   console.log(req.context);
   try {
-    const users = await User.find({ usertype: "audit" });
+    const users = await User.find({ usertype: "Auditor" });
     console.log(users);
     res.send(users);
   } catch (err) {

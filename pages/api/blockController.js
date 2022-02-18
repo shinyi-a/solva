@@ -12,22 +12,22 @@ app.get("/all", async (req, res) => {
 });
 
 app.get("/pending", async (req, res) => {
-  const hdb = await Block.find({ status: "pending" });
+  const hdb = await Block.find({ status: "Pending" });
   res.send(hdb);
 });
 
 app.get("/construction", async (req, res) => {
-  const hdb = await Block.find({ status: "construction" });
+  const hdb = await Block.find({ status: "Construction" });
   res.send(hdb);
 });
 
 app.get("/tnc", async (req, res) => {
-  const hdb = await Block.find({ status: "tnc" });
+  const hdb = await Block.find({ status: "Testing and Commissioning" });
   res.send(hdb);
 });
 
 app.get("/turnon", async (req, res) => {
-  const hdb = await Block.find({ status: "turnon" });
+  const hdb = await Block.find({ status: "Turned On" });
   res.send(hdb);
 });
 
@@ -149,11 +149,11 @@ app.post("/", async (req, res) => {
 //   }
 // });
 
-app.post("/", async (req, res) => {
-  console.log("new hdb: ", req.body);
-  const hdb = await Block.create(req.body);
-  res.send(hdb);
-});
+// app.post("/", async (req, res) => {
+//   console.log("new hdb: ", req.body);
+//   const hdb = await Block.create(req.body);
+//   res.send(hdb);
+// });
 
 app.delete("/:id", async (req, res) => {
   const hdb = await Block.findOneAndDelete({ _id: req.params.id });

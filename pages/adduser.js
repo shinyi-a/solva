@@ -7,7 +7,7 @@ export default function AddUser() {
     firstname: "",
     email: "",
     password: "",
-    usertype: "audit",
+    usertype: "Auditor",
   });
   const [firstnameEmpty, setFirstnameEmpty] = useState(null);
   const [emailEmpty, setEmailEmpty] = useState(null);

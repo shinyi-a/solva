@@ -57,24 +57,12 @@ const UserDetails = () => {
     loadUserDetails();
   }, [loading]);
 
-  let userRole = "";
-  if (loading) {
-    switch (true) {
-      case user.usertype.toString() === "pm":
-        userRole = "Staff";
-        break;
-      case user.usertype.toString() === "audit":
-        userRole = "Auditor";
-        break;
-    }
-  }
-
   return (
     <div>
       <h1>{user.firstname}</h1>
       {loading ? (
         <>
-          <h4>User Type: {userRole}</h4>
+          <h4>User Type: {user.usertype}</h4>
           <h4>Email: {user.email}</h4>
         </>
       ) : (

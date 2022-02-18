@@ -1,4 +1,3 @@
-//this is the individual block page
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -23,30 +22,12 @@ const BlockDetails = () => {
     loadBlk();
   }, []);
 
-  let statusName = "";
-  if (loadingBlk) {
-    switch (true) {
-      case blk.status.toString() === "pending":
-        statusName = "Pending";
-        break;
-      case blk.status.toString() === "construction":
-        statusName = "Under Construction";
-        break;
-      case blk.status.toString() === "tnc":
-        statusName = "Waiting for Testing and Commissioning";
-        break;
-      case blk.status.toString() === "turnon":
-        statusName = "Turned On";
-        break;
-    }
-  }
-
   return (
     <div>
       <h1>{id}</h1>
       {loadingBlk ? (
         <>
-          <h3>Status: {statusName}</h3>
+          <h3>Status: {blk.status}</h3>
           <h4>Project Manager in Charge: {blk.projectmanager}</h4>
           <h4>Block Capacity (kWp): {blk.capacity_kwp}</h4>
           <h4>No. of Panels: {blk.panels}</h4>

@@ -42,8 +42,7 @@ const UserManagement = () => {
           <li key={user._id}>
             <Link href={`/user/${user._id}`}>
               <a>
-                {user.firstname}, {user.email},{" "}
-                {user.usertype === "audit" ? " Auditor" : " Staff"}
+                {user.firstname}, {user.email}, {user.usertype}
               </a>
             </Link>
             <button onClick={() => handleDelete(user._id)}>Delete User</button>
