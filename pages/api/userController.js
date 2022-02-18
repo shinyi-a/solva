@@ -9,10 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //used
 app.post("/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   try {
     const user = await User.create(req.body);
-    console.log(user);
+    // console.log(user);
     res.send(user);
   } catch (error) {
     console.log(error.message);
@@ -79,14 +79,14 @@ app.get("/:id", async (req, res) => {
 });
 
 app.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    console.log("User Controller: Trying to delete an user");
-    const user = await User.findOneAndDelete({ _id: id });
-    res.send(`This ${user.firstname} has been deleted`);
-  } catch (error) {
-    console.log("Delete User Controller Error: " + error.message);
-  }
+  // const { id } = req.params;
+  // try {
+  console.log("User Controller: Trying to delete an user");
+  const user = await User.findOneAndDelete({ _id: req.params.id });
+  res.send(user);
+  // } catch (error) {
+  //   console.log("Delete User Controller Error: " + error.message);
+  // }
 });
 
 app.put("/:id", async (req, res) => {

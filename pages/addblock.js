@@ -1,7 +1,9 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function AddBlock() {
+  const router = useRouter();
   const [blockInput, setBlockInput] = useState({
     postalcode: "",
     capacity_kwp: "",
@@ -46,17 +48,32 @@ export default function AddBlock() {
   };
 
   //post user input
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (blockInput.postalcode && postalValid) {
-      axios
-        .post(`${process.env.API_ENDPOINT}/block`, blockInput)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
+      //   axios
+      //     .post(`${process.env.API_ENDPOINT}/block`, blockInput)
+      //     .then(function (response) {
+      //       console.log(response);
+      //       router.push(`/block/${blockInput.postalcode}`);
+      //     })
+      //     .catch(function (error) {
+      //       console.log(error);
+      //     });
+      try {
+        const res = await fetch(`${process.env.API_ENDPOINT}/block`, {
+          method: "POST",
+          body: JSON.stringify(blockInput),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
+        const data = await res.json();
+        router.push(`/block/${data.postalcode}`);
+      } catch (err) {
+        console.log(err);
+        // router.push("/failedlisting");
+      }
     } else {
       console.log("err");
     }
@@ -69,6 +86,7 @@ export default function AddBlock() {
         type="number"
         name="postalcode"
         id="postalcode"
+        min="0"
         onChange={handleChange}
         onBlur={handlePostalBlur}
         placeholder="Postal Code"

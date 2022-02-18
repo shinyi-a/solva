@@ -18,6 +18,7 @@ const blockSchema = new Schema(
     panelkwp: Number,
     status: String,
     projectmanager: String,
+    email: String,
     pendingdate: Date,
     constructiondate: Date,
     tncdate: Date,

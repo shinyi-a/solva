@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState } from "react";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 // import { useAuth } from "../context/authcontext";
 // import { auth } from "../firebase";
@@ -22,7 +22,7 @@ export default function AddAdmin() {
   const [userRoleEmpty, setUserRoleEmpty] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
-  // const router = useRouter();
+  const router = useRouter();
 
   //   const { signup } = useAuth();
   //   const auth = getAuth(app);
@@ -80,7 +80,7 @@ export default function AddAdmin() {
   };
 
   //post user input
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       signupInput.firstname &&
@@ -90,14 +90,28 @@ export default function AddAdmin() {
       emailValid &&
       passwordValid
     ) {
-      axios
-        .post(`${process.env.API_ENDPOINT}/user`, signupInput)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
+      // axios
+      //   .post(`${process.env.API_ENDPOINT}/user`, signupInput)
+      //   .then(function (response) {
+      //     console.log(response);
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
+      try {
+        const res = await fetch(`${process.env.API_ENDPOINT}/user`, {
+          method: "POST",
+          body: JSON.stringify(signupInput),
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
+        const data = await res.json();
+        router.push(`/user/${data._id}`);
+      } catch (err) {
+        console.log(err);
+        // router.push('/failedlisting')
+      }
     } else {
       console.log("err");
     }

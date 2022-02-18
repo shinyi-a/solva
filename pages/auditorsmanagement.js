@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 const AuditorManagement = () => {
   const [allAuditors, setAllAuditors] = useState([]);
   const [loadingAll, setLoadingAll] = useState(false);
+  const [del, setDel] = useState(false);
   const router = useRouter();
 
   const loadAll = async () => {
@@ -21,6 +22,10 @@ const AuditorManagement = () => {
   useEffect(() => {
     loadAll();
   }, []);
+
+  useEffect(() => {
+    router.push("/usersmanagement");
+  }, [del]);
 
   const allData = () => (
     <div>
@@ -39,14 +44,33 @@ const AuditorManagement = () => {
     </div>
   );
 
+  // const handleDelete = async (auditor) => {
+  //   try {
+  //     const res = await axios.delete(
+  //       `${process.env.API_ENDPOINT}/user/${auditor}`
+  //     );
+  //     // router.push("/auditorsmanagement");
+  //     router.refresh();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   const handleDelete = async (auditor) => {
     try {
-      const res = await axios.delete(
-        `${process.env.API_ENDPOINT}/user/${auditor}`
-      );
-      router.push("/auditorsmanagement");
+      const res = await fetch(`${process.env.API_ENDPOINT}/user/${auditor}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("success");
+      setDel(true);
+      router.push("/dashboard");
     } catch (err) {
-      console.log(err);
+      // router.push('/failedlisting')
+      console.log("delete failed: ", err);
     }
   };
 

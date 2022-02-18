@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 const UserManagement = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [loadingAll, setLoadingAll] = useState(false);
+  const [del, setDel] = useState(false);
   const router = useRouter();
 
   const loadAll = async () => {
@@ -23,15 +24,38 @@ const UserManagement = () => {
     loadAll();
   }, []);
 
+  useEffect(() => {
+    router.push("/usersmanagement");
+  }, [del]);
+
+  // const handleDelete = async (auditor) => {
+  //   try {
+  //     const res = await axios.delete(
+  //       `${process.env.API_ENDPOINT}/user/${auditor}`
+  //     );
+  //     console.log("sucessful delete");
+  //     setDel(true);
+  //     router.push("/dashboard");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   const handleDelete = async (auditor) => {
     try {
-      const res = await axios.delete(
-        `${process.env.API_ENDPOINT}/user/${auditor}`
-      );
-      console.log("sucessful delete");
-      router.push("/usersmanagement");
+      const res = await fetch(`${process.env.API_ENDPOINT}/user/${auditor}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("success");
+      setDel(true);
+      router.push("/dashboard");
     } catch (err) {
-      console.log(err);
+      // router.push('/failedlisting')
+      console.log("delete failed: ", err);
     }
   };
 

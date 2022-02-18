@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-export default function AddUser() {
+export default function Home() {
   const [signupInput, setSignupInput] = useState({
     email: "",
     password: "",
