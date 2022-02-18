@@ -8,6 +8,21 @@ const Header = () => {
           <h1>Solva</h1>
         </a>
       </Link>
+      <Link href="/addblock">
+        <a>
+          <h4>Add Block</h4>
+        </a>
+      </Link>
+      <Link href="/addadmin">
+        <a>
+          <h4>Add Staff/Auditor</h4>
+        </a>
+      </Link>
+      <Link href="/adduser">
+        <a>
+          <h4>Add Auditor</h4>
+        </a>
+      </Link>
     </header>
   );
 };
