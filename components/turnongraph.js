@@ -1285,7 +1285,7 @@ const Graph = () => {
           labels: graphLabel,
           datasets: [
             {
-              label: "No. of Turn On Blocks",
+              label: "No. of Turned On Blocks",
               data: graphData,
               backgroundColor: ["pink"],
               hoverBackgroundColor: ["red"],

@@ -3,17 +3,16 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const UserManagement = () => {
-  const [allUsers, setAllUsers] = useState([]);
+const AuditorManagement = () => {
+  const [allAuditors, setAllAuditors] = useState([]);
   const [loadingAll, setLoadingAll] = useState(false);
   const router = useRouter();
 
   const loadAll = async () => {
     try {
-      const res = await axios.get(`${process.env.API_ENDPOINT}/user`);
-      setAllUsers(res.data);
+      const res = await axios.get(`${process.env.API_ENDPOINT}/user/auditor`);
+      setAllAuditors(res.data);
       setLoadingAll(true);
-      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -23,27 +22,14 @@ const UserManagement = () => {
     loadAll();
   }, []);
 
-  const handleDelete = async (auditor) => {
-    try {
-      const res = await axios.delete(
-        `${process.env.API_ENDPOINT}/user/${auditor}`
-      );
-      console.log("sucessful delete");
-      router.push("/usersmanagement");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const allData = () => (
     <div>
       <ul>
-        {allUsers.map((user) => (
+        {allAuditors.map((user) => (
           <li key={user._id}>
             <Link href={`/user/${user._id}`}>
               <a>
-                {user.firstname}, {user.email},{" "}
-                {user.usertype === "audit" ? " Auditor" : " Staff"}
+                {user.firstname}, {user.email}, Auditor
               </a>
             </Link>
             <button onClick={() => handleDelete(user._id)}>Delete User</button>
@@ -53,12 +39,23 @@ const UserManagement = () => {
     </div>
   );
 
+  const handleDelete = async (auditor) => {
+    try {
+      const res = await axios.delete(
+        `${process.env.API_ENDPOINT}/user/${auditor}`
+      );
+      router.push("/auditorsmanagement");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
-      <h1>All Users</h1>
+      <h1>All Auditors</h1>
       {loadingAll ? allData() : <h3>Loading...</h3>}
     </>
   );
 };
 
-export default UserManagement;
+export default AuditorManagement;

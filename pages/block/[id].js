@@ -14,7 +14,6 @@ const BlockDetails = () => {
       const res = await axios.get(`${process.env.API_ENDPOINT}/block/${id}`);
       setBlk(res.data[0]);
       setLoadingBlk(true);
-      console.log(replydata[0].status);
     } catch (err) {
       console.log(err);
     }

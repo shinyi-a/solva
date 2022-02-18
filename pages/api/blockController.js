@@ -58,6 +58,12 @@ app.get("/graph", async (req, res) => {
   res.send(hdb);
 });
 
+app.get("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const hdb = await Block.find({ projectmanager: id });
+  res.send(hdb);
+});
+
 app.get("/:id", async (req, res) => {
   const { id } = req.params;
   const hdb = await Block.find({ postalcode: id });

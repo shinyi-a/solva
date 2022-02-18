@@ -23,6 +23,16 @@ const Header = () => {
           <h4>Add Auditor</h4>
         </a>
       </Link>
+      <Link href="/usersmanagement">
+        <a>
+          <h4>Manage User Accounts</h4>
+        </a>
+      </Link>
+      <Link href="/auditorsmanagement">
+        <a>
+          <h4>Manage Auditor Accounts</h4>
+        </a>
+      </Link>
     </header>
   );
 };
