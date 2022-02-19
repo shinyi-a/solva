@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import PendingView from "../../components/pendingview";
+import ConstructionView from "../../components/constructionview";
+import TNCView from "../../components/tncview";
+import TurnonView from "../../components/turnonview";
 
 const BlockDetails = () => {
   const router = useRouter();
@@ -22,22 +26,22 @@ const BlockDetails = () => {
     loadBlk();
   }, []);
 
-  return (
-    <div>
-      <h1>{id}</h1>
-      {loadingBlk ? (
-        <>
-          <h3>Status: {blk.status}</h3>
-          <h4>Project Manager in Charge: {blk.projectmanager}</h4>
-          <h4>Block Capacity (kWp): {blk.capacity_kwp}</h4>
-          <h4>No. of Panels: {blk.panels}</h4>
-          <h4>Panel Maximum Power (Pmax/W): {blk.panelkwp}</h4>
-        </>
-      ) : (
-        ""
-      )}
-    </div>
-  );
+  if (loadingBlk) {
+    if (blk.status === "Pending") {
+      return <PendingView>{{ blk, id }}</PendingView>;
+    }
+    if (loadingBlk && blk.status === "Construction") {
+      return <ConstructionView>{{ blk, id }}</ConstructionView>;
+    }
+    if (loadingBlk && blk.status === "Testing and Commissioning") {
+      return <TNCView>{{ blk, id }}</TNCView>;
+    }
+    if (loadingBlk && blk.status === "Turned On") {
+      return <TurnonView>{blk}</TurnonView>;
+    }
+  } else {
+    return <h1>loading...</h1>;
+  }
 };
 
 export default BlockDetails;
