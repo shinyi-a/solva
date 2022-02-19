@@ -3,9 +3,20 @@ const app = express();
 const User = require("./../../models/userModel");
 const methodOverride = require("method-override");
 const jwt = require("jsonwebtoken");
+const usersSeed = require("./userSeed");
 
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
+
+// Seed data
+// app.get("/seed", async (req, res) => {
+//   try {
+//     const seedUsers = await User.create(usersSeed);
+//     res.send(seedUsers);
+//   } catch (err) {
+//     res.send(err.message);
+//   }
+// });
 
 //used
 app.post("/", async (req, res) => {

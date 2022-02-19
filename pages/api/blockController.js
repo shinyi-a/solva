@@ -95,7 +95,6 @@ app.get("/user/:id", async (req, res) => {
 //   const hdb = await Block.find({ projectmanager: id, status: "Turned On" });
 //   res.send(hdb);
 // });
-
 //get the specific block details, id is postal code
 app.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -103,6 +102,7 @@ app.get("/:id", async (req, res) => {
   res.send(hdb);
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////
 //to get pending blocks to be updated to construction
 app.get("/:id/construction", async (req, res) => {
   const { id } = req.params;
@@ -147,7 +147,7 @@ app.put("/:id", async (req, res) => {
   });
   res.send(hdb);
 });
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 // app.get("/:id", async (req, res) => {
 //   try {
 //     const { id } = req.params;
