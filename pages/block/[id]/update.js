@@ -27,13 +27,13 @@ const BlockEdit = () => {
 
   if (loadingBlk) {
     if (blk.status === "Pending") {
-      return <UpdateContruction />;
+      return <UpdateContruction>{blk}</UpdateContruction>;
     }
     if (loadingBlk && blk.status === "Construction") {
       return <UpdateTnC>{blk}</UpdateTnC>;
     }
     if (loadingBlk && blk.status === "Testing and Commissioning") {
-      return <UpdateTurnon />;
+      return <UpdateTurnon>{blk}</UpdateTurnon>;
     }
   } else {
     return <h1>loading...</h1>;

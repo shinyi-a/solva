@@ -39,7 +39,7 @@ const UpdateTnC = ({ children }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="tncdate">Testing and Commissioning date: </label>
+      <label htmlFor="tncdate">Testing and Commissioning Date: </label>
       <input
         type="date"
         name="tncdate"
@@ -47,6 +47,8 @@ const UpdateTnC = ({ children }) => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
+      <br />
+      {inputEmpty ? <span>Please enter date.</span> : ""}
       <br />
       <input type="submit" />
     </form>
