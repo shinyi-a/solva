@@ -57,7 +57,7 @@ const Dashboard = () => {
     </div>
   );
 
-  console.log(tncHDB);
+  // console.log(tncHDB);
 
   const TnCData = () => (
     <div>

@@ -24,7 +24,10 @@ const AuditorManagement = () => {
   }, []);
 
   useEffect(() => {
-    router.push("/usersmanagement");
+    if (del) {
+      loadAll();
+      setDel(false);
+    }
   }, [del]);
 
   const allData = () => (
@@ -34,7 +37,7 @@ const AuditorManagement = () => {
           <li key={user._id}>
             <Link href={`/user/${user._id}`}>
               <a>
-                {user.firstname}, {user.email}, {user.usertype}
+                {user.firstname}, {user.email}, {user.usertype}{" "}
               </a>
             </Link>
             <button onClick={() => handleDelete(user._id)}>Delete User</button>
@@ -67,7 +70,6 @@ const AuditorManagement = () => {
 
       console.log("success");
       setDel(true);
-      router.push("/dashboard");
     } catch (err) {
       // router.push('/failedlisting')
       console.log("delete failed: ", err);

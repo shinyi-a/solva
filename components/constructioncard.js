@@ -18,7 +18,12 @@ const UpdateContruction = ({ children }) => {
   const handleChange = (e) => {
     const label = e.target.name;
     const value = e.target.value;
-    setUserInput({ ...userInput, [label]: value });
+    const blockcapacity = 0;
+    if (!typeEmpty && !panelEmpty) {
+      blockcapacity = (userInput.panelkwp * userInput.panels) / 1000;
+    }
+    setUserInput({ ...userInput, capacity_kwp: blockcapacity, [label]: value });
+    console.log(userInput);
   };
 
   const handleDateBlur = () => {
@@ -33,16 +38,16 @@ const UpdateContruction = ({ children }) => {
     !userInput.panels ? setPanelEmpty(true) : setPanelEmpty(false);
   };
 
-  const displaycapacity = 0;
+  const displayCapacity = 0;
   if (!typeEmpty && !panelEmpty) {
-    displaycapacity = (userInput.panelkwp * userInput.panels) / 1000;
+    displayCapacity = (userInput.panelkwp * userInput.panels) / 1000;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!dateEmpty && !typeEmpty && !panelEmpty) {
-      const blockcapacity = (userInput.panelkwp * userInput.panels) / 1000;
-      setUserInput({ ...userInput, capacity_kwp: blockcapacity });
+      // const blockcapacity = (userInput.panelkwp * userInput.panels) / 1000;
+      // setUserInput({ ...userInput, capacity_kwp: blockcapacity });
       try {
         axios.put(`${process.env.API_ENDPOINT}/block/${id}`, userInput);
         router.push(`/block/${id}`);
@@ -69,7 +74,7 @@ const UpdateContruction = ({ children }) => {
       <br />
       {dateEmpty ? <span>Please enter date.</span> : ""}
       <br />
-      <label>Total Block Capacity (kWp): {displaycapacity}</label>
+      <label>Total Block Capacity (kWp): {displayCapacity}</label>
       <br />
       <br />
       <label htmlFor="panelkwp">Panel Maximum Power (Pmax/W): </label>

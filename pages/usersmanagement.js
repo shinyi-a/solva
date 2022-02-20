@@ -11,10 +11,9 @@ const UserManagement = () => {
 
   const loadAll = async () => {
     try {
-      const res = await axios.get(`${process.env.API_ENDPOINT}/user`);
+      const res = await axios.get(`${process.env.API_ENDPOINT}/user/all`);
       setAllUsers(res.data);
       setLoadingAll(true);
-      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -25,7 +24,10 @@ const UserManagement = () => {
   }, []);
 
   useEffect(() => {
-    router.push("/usersmanagement");
+    if (del) {
+      loadAll();
+      setDel(false);
+    }
   }, [del]);
 
   // const handleDelete = async (auditor) => {
@@ -41,9 +43,9 @@ const UserManagement = () => {
   //   }
   // };
 
-  const handleDelete = async (auditor) => {
+  const handleDelete = async (user) => {
     try {
-      const res = await fetch(`${process.env.API_ENDPOINT}/user/${auditor}`, {
+      const res = await fetch(`${process.env.API_ENDPOINT}/user/${user}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -52,9 +54,7 @@ const UserManagement = () => {
 
       console.log("success");
       setDel(true);
-      router.push("/dashboard");
     } catch (err) {
-      // router.push('/failedlisting')
       console.log("delete failed: ", err);
     }
   };
@@ -66,7 +66,7 @@ const UserManagement = () => {
           <li key={user._id}>
             <Link href={`/user/${user._id}`}>
               <a>
-                {user.firstname}, {user.email}, {user.usertype}
+                {user.firstname}, {user.email}, {user.usertype}{" "}
               </a>
             </Link>
             <button onClick={() => handleDelete(user._id)}>Delete User</button>
