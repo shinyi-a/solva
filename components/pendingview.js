@@ -13,7 +13,7 @@ const PendingView = ({ children }) => {
       <h3>Status: {blk.status}</h3>
       <h4>Project Manager in Charge: {blk.projectmanager}</h4>
       <h4>Pending Date: {displaydate}</h4>
-      <button onClick={() => router.push(`/block/${id}/edit`)}>
+      <button onClick={() => router.push(`/block/${id}/update`)}>
         Ready for Construction
       </button>
     </>

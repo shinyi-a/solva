@@ -16,7 +16,7 @@ const ConstructionView = ({ children }) => {
       <h4>Total Block Capacity (kWp): {blk.capacity_kwp}</h4>
       <h4>No. of Panels: {blk.panels}</h4>
       <h4>Panel Maximum Power (Pmax/W): {blk.panelkwp}</h4>
-      <button onClick={() => router.push(`/block/${id}/edit`)}>
+      <button onClick={() => router.push(`/block/${id}/update`)}>
         Ready for Testing and Commissioning
       </button>
     </>

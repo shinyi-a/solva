@@ -30,7 +30,7 @@ const BlockEdit = () => {
       return <UpdateContruction />;
     }
     if (loadingBlk && blk.status === "Construction") {
-      return <UpdateTnC />;
+      return <UpdateTnC>{blk}</UpdateTnC>;
     }
     if (loadingBlk && blk.status === "Testing and Commissioning") {
       return <UpdateTurnon />;
