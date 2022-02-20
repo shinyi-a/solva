@@ -17,7 +17,13 @@ const TurnonView = ({ children }) => {
       <h4>Total Block Capacity (kWp): {children.capacity_kwp}</h4>
       <h4>No. of Panels: {children.panels}</h4>
       <h4>Panel Maximum Power (Pmax/W): {children.panelkwp}</h4>
-      {/* add download button for tncreport_doc and asbulit_doc */}
+      <form method="get" action={children.tncreport_doc}>
+        Testing and Commissioning Report:{" "}
+        <button type="submit">Download</button>
+      </form>
+      <form method="get" action={children.asbulit_doc}>
+        As-Built Drawing: <button type="submit">Download</button>
+      </form>
     </>
   );
 };

@@ -28,7 +28,7 @@ const UpdateTnC = ({ children }) => {
         axios.put(`${process.env.API_ENDPOINT}/block/${id}`, tncdateInput);
         router.push(`/block/${id}`);
       } catch (err) {
-        router.push("/failedlisting");
+        // router.push("/404");
         console.log(err);
         console.log("update failed: ", err);
       }
