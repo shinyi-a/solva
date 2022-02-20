@@ -1,4 +1,4 @@
-const Footer = () => {
+const FooterContent = () => {
   let footnote = " © Copyright " + new Date().getFullYear() + ", ";
   return (
     <footer>
@@ -8,4 +8,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterContent;

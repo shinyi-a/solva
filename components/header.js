@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Header = () => {
+const HeaderContent = () => {
   return (
     <header>
       <Link href="/dashboard">
@@ -37,4 +37,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderContent;

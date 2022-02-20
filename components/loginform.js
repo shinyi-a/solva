@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import UserContext from "../context/loginstate";
-
+import { Form, Input, Button } from "antd";
 export default function Login() {
   const router = useRouter();
   const userLoginContext = useContext(UserContext);
@@ -29,10 +29,19 @@ export default function Login() {
   };
 
   //set user input
-  const handleChange = (e) => {
-    const label = e.target.name;
-    const value = e.target.value;
-    setLoginInput({ ...loginInput, [label]: value });
+  //   const handleChange = (e) => {
+  //     const label = e.target.name;
+  //     const value = e.target.value;
+  //     setLoginInput({ ...loginInput, [label]: value });
+  //     console.log(loginInput);
+  //   };
+
+  const handleEmailChange = (e) => {
+    setLoginInput({ ...loginInput, email: e.target.value });
+    console.log(loginInput);
+  };
+  const handlePasswordChange = (e) => {
+    setLoginInput({ ...loginInput, password: e.target.value });
     console.log(loginInput);
   };
 
@@ -123,44 +132,101 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email: </label>
-      <input
-        type="text"
+    <Form
+      name="basic"
+      labelCol={{
+        span: 8,
+      }}
+      wrapperCol={{
+        span: 16,
+      }}
+      autoComplete="off"
+    >
+      <Form.Item
+        label="Email"
         name="email"
         id="email"
-        onChange={handleChange}
+        onChange={handleEmailChange}
         onBlur={handleEmailBlur}
-      />
-      <br />
+      >
+        <Input />
+      </Form.Item>
+
       {emailEmpty ? <span>Please enter email.</span> : ""}
-      <br />
       {emailValid === false ? (
         <span>Please enter email in correct format.</span>
       ) : (
         ""
       )}
-      <br />
-      <br />
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
+
+      <Form.Item
+        label="Password"
         name="password"
         id="password"
-        onChange={handleChange}
+        onChange={handlePasswordChange}
         onBlur={handlePasswordBlur}
-      />
-      <br />
+      >
+        <Input.Password />
+      </Form.Item>
+
       {passwordEmpty ? <span>Please enter password.</span> : ""}
-      <br />
+
       {passwordValid === false ? (
         <span>Please enter between 6 to 20 letters for password.</span>
       ) : (
         ""
       )}
-      <br />
-      <br />
-      <input type="submit" name="submitSignup" id="submitSignup" />
-    </form>
+
+      <Form.Item
+        wrapperCol={{
+          offset: 8,
+          span: 16,
+        }}
+      >
+        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   );
+  // <form onSubmit={handleSubmit}>
+  //   <label htmlFor="email">Email: </label>
+  //   <input
+  //     type="text"
+  //     name="email"
+  //     id="email"
+  //     onChange={handleChange}
+  //     onBlur={handleEmailBlur}
+  //   />
+  //   <br />
+  //   {emailEmpty ? <span>Please enter email.</span> : ""}
+  //   <br />
+  //   {emailValid === false ? (
+  //     <span>Please enter email in correct format.</span>
+  //   ) : (
+  //     ""
+  //   )}
+  //   <br />
+  //   <br />
+  //   <label htmlFor="password">Password: </label>
+  //   <input
+  //     type="password"
+  //     name="password"
+  //     id="password"
+  //     onChange={handleChange}
+  //     onBlur={handlePasswordBlur}
+  //   />
+  //   <br />
+  //   {passwordEmpty ? <span>Please enter password.</span> : ""}
+  //   <br />
+  //   {passwordValid === false ? (
+  //     <span>Please enter between 6 to 20 letters for password.</span>
+  //   ) : (
+  //     ""
+  //   )}
+  //   <br />
+  //   <br />
+  //   <input type="submit" name="submitSignup" id="submitSignup" />
+  // </form>
+  //   );
 }

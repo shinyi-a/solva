@@ -20,5 +20,9 @@ export default function Home() {
       router.push("/");
     }
   }, []);
-  return <Login />;
+  return (
+    <div id="container" style={{ padding: "24px" }}>
+      <Login />
+    </div>
+  );
 }

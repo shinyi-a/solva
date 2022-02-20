@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Head from "next/head";
-import Layout from "../components/layout";
+import LayoutContent from "../components/layout";
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -8,9 +9,9 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Solva</title>
       </Head>
-      <Layout>
+      <LayoutContent>
         <Component {...pageProps} />
-      </Layout>
+      </LayoutContent>
     </>
   );
 }

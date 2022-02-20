@@ -1,21 +1,55 @@
-import Header from "./header";
-import Footer from "./footer";
+import HeaderContent from "./header";
+import FooterContent from "./footer";
 import NavBar from "./navbar";
+import { Layout } from "antd";
+
 // import "tailwindcss/tailwind.css";
 
-const Layout = ({ children }) => {
+const LayoutContent = ({ children }) => {
+  const { Header, Content, Footer, Sider } = Layout;
+
   if (children.type.name === "Home") {
     return <div>{children}</div>;
   } else {
     return (
-      <>
-        <Header />
-        <NavBar />
-        <div>{children}</div>
-        <Footer />
-      </>
+      <Layout>
+        <Header className="header">
+          <HeaderContent />
+        </Header>
+        <Layout>
+          <Sider
+            width={256}
+            className="site-layout-background"
+            defaultSelectedKeys={["1"]}
+          >
+            <NavBar />
+          </Sider>
+          <Content
+            className="site-layout-background"
+            style={{
+              padding: 24,
+              margin: 0,
+              minHeight: 280,
+            }}
+          >
+            {children}
+          </Content>
+        </Layout>
+        <Footer>
+          <FooterContent />
+        </Footer>
+      </Layout>
     );
+
+    // return (
+    //   <>
+    //     <HeaderContent />
+    //     <NavBar />
+    //     <div>{children}</div>
+    //     <FooterContent />
+    //   </>
+    // );
   }
 };
 
-export default Layout;
+export default LayoutContent;
