@@ -9,6 +9,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       // unique: true,
+      //test git hardreset
       maxLength: 45,
     },
     email: {
