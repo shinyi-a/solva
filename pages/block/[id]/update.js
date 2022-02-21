@@ -22,8 +22,10 @@ const BlockEdit = () => {
   };
 
   useEffect(() => {
-    loadBlk();
-  }, []);
+    if (id !== undefined) {
+      loadBlk();
+    }
+  }, [id]);
 
   if (loadingBlk) {
     if (blk.status === "Pending") {
