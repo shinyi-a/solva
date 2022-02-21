@@ -8,8 +8,7 @@ const userSchema = new Schema(
     firstname: {
       type: String,
       required: true,
-      // unique: true,
-      //test git hardreset
+      unique: true,
       maxLength: 45,
     },
     email: {
