@@ -9,8 +9,8 @@ const ConstructionView = ({ children }) => {
   const displaydate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
   return (
     <>
-      <h1>{blk.postalcode}</h1>
-      <h3>Status: {blk.status}</h3>
+      <h3>Postal Code: {blk.postalcode}</h3>
+      <h4>Block Status: {blk.status}</h4>
       <h4>Project Manager in Charge: {blk.projectmanager}</h4>
       <h4>Construction Date: {displaydate}</h4>
       <h4>Total Block Capacity (kWp): {blk.capacity_kwp}</h4>
