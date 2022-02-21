@@ -65,7 +65,8 @@ app.get("/graph", async (req, res) => {
 //to find the list of blocks under the specific project manager, id is project manager _id
 app.get("/user/:id", async (req, res) => {
   const { id } = req.params;
-  const hdb = await Block.find({ projectmanager: id });
+  // const hdb = await Block.find({ projectmanager: id });
+  const hdb = await Block.find({ email: id });
   res.send(hdb);
 });
 

@@ -25,7 +25,8 @@ const UserDetails = () => {
     try {
       console.log(user.firstname);
       const res = await axios.get(
-        `${process.env.API_ENDPOINT}/block/user/${user.firstname}`
+        // `${process.env.API_ENDPOINT}/block/user/${user.firstname}`
+        `${process.env.API_ENDPOINT}/block/user/${user.email}`
       );
       setProjBlocks(res.data);
       setLoadingBlocks(true);

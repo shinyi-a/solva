@@ -41,7 +41,7 @@ const BlockDetails = () => {
   if (loadingBlk && loadingMap) {
     const mapLat = parseFloat(map.LATITUDE).toFixed(5);
     const mapLng = parseFloat(map.LONGITUDE).toFixed(5);
-    console.log(map);
+    // console.log(map);
     const mapURL = `https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=grey&lat=${mapLat}&lng=${mapLng}&zoom=17&height=450&width=450&points=[${mapLat},${mapLng},%22255,0,%22,%22%22]`;
 
     if (blk.status === "Pending") {
