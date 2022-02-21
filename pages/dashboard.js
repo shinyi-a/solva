@@ -83,9 +83,9 @@ const Dashboard = () => {
   return (
     <>
       <h1>Dashboard</h1>
+      <Graph />
       {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
       {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-      <Graph />
     </>
   );
 };

@@ -8,31 +8,28 @@ const Header = () => {
           <h1>Solva</h1>
         </a>
       </Link>
-      <Link href="/addblock">
-        <a>
-          <h4>Add Block</h4>
-        </a>
-      </Link>
-      <Link href="/addadmin">
-        <a>
-          <h4>Add Staff/Auditor</h4>
-        </a>
-      </Link>
-      <Link href="/adduser">
-        <a>
-          <h4>Add Auditor</h4>
-        </a>
-      </Link>
-      <Link href="/usersmanagement">
-        <a>
-          <h4>Manage User Accounts</h4>
-        </a>
-      </Link>
-      <Link href="/auditorsmanagement">
-        <a>
-          <h4>Manage Auditor Accounts</h4>
-        </a>
-      </Link>
+      <ul>
+        <Link href="/usersmanagement">
+          <a>
+            <li>Manage User Accounts</li>
+          </a>
+        </Link>
+        <Link href="/auditorsmanagement">
+          <a>
+            <li>Manage Auditor Accounts</li>
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <li>Add Your Profile</li>
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <li>Add Logout Function</li>
+          </a>
+        </Link>
+      </ul>
     </header>
   );
 };

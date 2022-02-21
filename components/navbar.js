@@ -3,6 +3,11 @@ import Link from "next/link";
 const NavBar = () => {
   return (
     <ul>
+      <Link href="/addblock">
+        <a>
+          <li>Add New Block</li>
+        </a>
+      </Link>
       <Link href="/all">
         <a>
           <li>All HDB Blocks</li>

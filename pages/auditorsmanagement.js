@@ -79,6 +79,11 @@ const AuditorManagement = () => {
   return (
     <>
       <h1>All Auditors</h1>
+      <Link href="/adduser">
+        <a>
+          <h4>Add Auditor</h4>
+        </a>
+      </Link>
       {loadingAll ? allData() : <h3>Loading...</h3>}
     </>
   );

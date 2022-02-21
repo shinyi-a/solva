@@ -79,6 +79,11 @@ const UserManagement = () => {
   return (
     <>
       <h1>All Users</h1>
+      <Link href="/addadmin">
+        <a>
+          <h4>Add Staff/Auditor</h4>
+        </a>
+      </Link>
       {loadingAll ? allData() : <h3>Loading...</h3>}
     </>
   );
