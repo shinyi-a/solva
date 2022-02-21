@@ -83,9 +83,15 @@ const Dashboard = () => {
   return (
     <>
       <h1>Dashboard</h1>
-      {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
-      {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-      <Graph />
+      <div className="main-header">
+        <Graph />
+      </div>
+      <div class="main-cards">
+        <div class="card">
+          {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
+        </div>
+        <div class="card">{loadingTnC ? TnCData() : <h3>Loading...</h3>}</div>
+      </div>
     </>
   );
 };

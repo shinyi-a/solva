@@ -8,12 +8,19 @@ const Layout = ({ children }) => {
     return <div>{children}</div>;
   } else {
     return (
-      <>
-        <Header />
-        <NavBar />
-        <div>{children}</div>
-        <Footer />
-      </>
+      <div className="grid-container">
+        <div className="header">
+          <Header />
+        </div>
+
+        <div className="sidenav">
+          <NavBar />
+        </div>
+        <div className="main">{children}</div>
+        <div className="footer">
+          <Footer />
+        </div>
+      </div>
     );
   }
 };

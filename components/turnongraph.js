@@ -1276,24 +1276,22 @@ const Graph = () => {
   // console.log(graphData);
 
   return (
-    <div>
-      <Bar
-        height={400}
-        width={600}
-        options={{ maintainAspectRatio: false }}
-        data={{
-          labels: graphLabel,
-          datasets: [
-            {
-              label: "No. of Turned On Blocks",
-              data: graphData,
-              backgroundColor: ["pink"],
-              hoverBackgroundColor: ["red"],
-            },
-          ],
-        }}
-      />
-    </div>
+    <Bar
+      height={400}
+      width={600}
+      options={{ maintainAspectRatio: false }}
+      data={{
+        labels: graphLabel,
+        datasets: [
+          {
+            label: "No. of Turned On Blocks",
+            data: graphData,
+            backgroundColor: ["pink"],
+            hoverBackgroundColor: ["red"],
+          },
+        ],
+      }}
+    />
   );
 };
 
