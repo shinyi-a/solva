@@ -1276,10 +1276,8 @@ const Graph = () => {
   // console.log(graphData);
 
   return (
-    <div>
+    <div className="graphcontainer">
       <Bar
-        height={400}
-        width={600}
         options={{ maintainAspectRatio: false }}
         data={{
           labels: graphLabel,
@@ -1287,8 +1285,8 @@ const Graph = () => {
             {
               label: "Total No. of Turned On Blocks",
               data: graphData,
-              backgroundColor: ["pink"],
-              hoverBackgroundColor: ["red"],
+              backgroundColor: ["#BBBBBB"],
+              hoverBackgroundColor: ["#F9BC17"],
             },
           ],
         }}

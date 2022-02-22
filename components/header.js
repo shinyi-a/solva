@@ -3,33 +3,58 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header>
-      <Link href="/dashboard">
-        <a>
-          <h1>Solva</h1>
-        </a>
-      </Link>
-      <ul>
-        <Link href="/usersmanagement">
-          <a>
-            <li>Manage User Accounts</li>
-          </a>
-        </Link>
-        <Link href="/auditorsmanagement">
-          <a>
-            <li>Manage Auditor Accounts</li>
-          </a>
-        </Link>
-        <Link href="/">
-          <a>
-            <li>Add Your Profile</li>
-          </a>
-        </Link>
-        <Link href="/">
-          <a>
-            <li>Add Logout Function</li>
-          </a>
-        </Link>
-      </ul>
+      <div className="headernav">
+        <div className="headernavlogo">
+          <Link href="/dashboard">
+            <a>
+              <div className="headerlogo">
+                <img src="/logo.png" width="80px" height="80px" />
+                <span className="logo dashboardlogo">SOLVA</span>
+              </div>
+            </a>
+          </Link>
+        </div>
+        <div id="headernavoptions">
+          <ul id="horizontal-list">
+            <li className="headerli">
+              <div className="headericon">
+                <Link href="/usersmanagement">
+                  <a>
+                    <span className="material-icons md-36">&#xe939;</span>
+                  </a>
+                </Link>
+              </div>
+            </li>
+            <li className="headerli">
+              <div className="headericon">
+                <Link href="/auditorsmanagement">
+                  <a>
+                    <span className="material-icons md-36">&#xe939;</span>
+                  </a>
+                </Link>
+              </div>
+            </li>
+            <li className="headerli">
+              <div className="headericon">
+                <Link href="/auditorsmanagement">
+                  <a>
+                    <span className="material-icons md-36">&#xf02e;</span>
+                  </a>
+                </Link>
+              </div>
+            </li>
+            <li className="headerli">
+              <div className="headericonlast">
+                <Link href="/auditorsmanagement">
+                  <a>
+                    <span className="material-icons md-36">&#xe9ba;</span>
+                  </a>
+                </Link>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </header>
   );
 };

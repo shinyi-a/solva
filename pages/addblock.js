@@ -80,23 +80,30 @@ export default function AddBlock() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="postalcode">Postal Code: </label>
-      <input
-        type="number"
-        name="postalcode"
-        id="postalcode"
-        min="0"
-        onChange={handleChange}
-        onBlur={handlePostalBlur}
-        placeholder="Postal Code"
-      />
-      <br />
-      {postalEmpty ? <span>Please enter postal code.</span> : ""}
-      <br />
-      {postalValid === false ? <span>Please enter a 6 digit number.</span> : ""}
-      <br />
-      <input type="submit" name="submitAddBlock" id="submitAddBlock" />
-    </form>
+    <>
+      <h1 className="title">Add New Block</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="postalcode">Postal Code: </label>
+        <input
+          type="number"
+          name="postalcode"
+          id="postalcode"
+          min="0"
+          onChange={handleChange}
+          onBlur={handlePostalBlur}
+          placeholder="Postal Code"
+        />
+        <br />
+        {postalEmpty ? <span>Please enter postal code.</span> : ""}
+        <br />
+        {postalValid === false ? (
+          <span>Please enter a 6 digit number.</span>
+        ) : (
+          ""
+        )}
+        <br />
+        <input type="submit" name="submitAddBlock" id="submitAddBlock" />
+      </form>
+    </>
   );
 }

@@ -8,15 +8,15 @@ const PendingView = ({ children }) => {
   const splitDate = onlyDate.split("-");
   const displaydate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
   return (
-    <>
-      <h3>Postal Code: {blk.postalcode}</h3>
-      <h4>Block Status: {blk.status}</h4>
-      <h4>Project Manager in Charge: {blk.projectmanager}</h4>
-      <h4>Pending Date: {displaydate}</h4>
+    <article>
+      <p>Postal Code: {blk.postalcode}</p>
+      <p>Block Status: {blk.status}</p>
+      <p>Project Manager in Charge: {blk.projectmanager}</p>
+      <p>Pending Date: {displaydate}</p>
       <button onClick={() => router.push(`/block/${id}/update`)}>
         Ready for Construction
       </button>
-    </>
+    </article>
   );
 };
 

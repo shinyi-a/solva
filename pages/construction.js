@@ -3,7 +3,7 @@ import Link from "next/link";
 const Construction = ({ hdbblocks }) => {
   return (
     <>
-      <h1>All Construction Blocks</h1>
+      <h1 className="title">All Construction Blocks</h1>
       <ul>
         {hdbblocks.map((blk) => (
           <Link href={`/block/${blk.postalcode}`} key={blk._id}>

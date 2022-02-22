@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Graph from "../components/turnongraph";
+import NavBar from "../components/navbar";
+import DashFooter from "../components/dashboardfooter";
 
 const Dashboard = () => {
   const [constructionHDB, setConstructionHDB] = useState([]);
@@ -46,7 +48,7 @@ const Dashboard = () => {
 
   const constructionData = () => (
     <div>
-      <h2>Construction</h2>
+      <h2 className="title">Construction</h2>
       <ul>
         {constructionHDB.map((blk) => (
           <Link key={blk._id} href={`/block/${blk.postalcode}`}>
@@ -61,7 +63,7 @@ const Dashboard = () => {
 
   const TnCData = () => (
     <div>
-      <h2>Testing and Commissioning</h2>
+      <h2 className="title">Testing and Commissioning</h2>
       <ul>
         {tncHDB.map((blk) => (
           <Link key={blk._id} href={`/block/${blk.postalcode}`}>
@@ -81,12 +83,30 @@ const Dashboard = () => {
   // });
 
   return (
-    <>
-      <h1>Dashboard</h1>
-      <Graph />
-      {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
-      {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-    </>
+    <div className="dashboardcontainer">
+      <div className="dashboardnavbar">
+        <NavBar />
+      </div>
+      <div className="dashboardcontentcontainer">
+        <div className="dashboardcontent">
+          <div className="dashboardtop">
+            <h2 className="title">Turned On Blocks in a Year</h2>
+            <Graph />
+          </div>
+          <div className="dashboardblocks">
+            <div className="dashboardconstruct">
+              {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
+            </div>
+            <div className="dashboardtnc">
+              {loadingTnC ? TnCData() : <h3>Loading...</h3>}
+            </div>
+          </div>
+          <div className="dashboardfooter">
+            <DashFooter />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

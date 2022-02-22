@@ -42,50 +42,86 @@ const BlockDetails = () => {
     const mapLat = parseFloat(map.LATITUDE).toFixed(5);
     const mapLng = parseFloat(map.LONGITUDE).toFixed(5);
     // console.log(map);
-    const mapURL = `https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=grey&lat=${mapLat}&lng=${mapLng}&zoom=17&height=450&width=450&points=[${mapLat},${mapLng},%22255,0,%22,%22%22]`;
+    const mapURL = `https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=grey&lat=${mapLat}&lng=${mapLng}&zoom=17&height=450&width=450&points=[${mapLat},${mapLng},%22249,188,23%22,%22%22]`;
 
     if (blk.status === "Pending") {
       return (
-        <>
-          <img src={mapURL} />
-          <h3>
-            Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
-          </h3>
-          <PendingView>{{ blk, id }}</PendingView>
-        </>
+        <div className="cardcontainer">
+          <section>
+            <div className="cardcontent">
+              <h2 className="title">{id}</h2>
+              <div className="mapplacement">
+                <img src={mapURL} />
+              </div>
+              <div className="carddetails">
+                <p>
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                </p>
+                <PendingView>{{ blk, id }}</PendingView>
+              </div>
+            </div>
+          </section>
+        </div>
       );
     }
     if (loadingBlk && blk.status === "Construction") {
       return (
-        <>
-          <img src={mapURL} />
-          <h3>
-            Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
-          </h3>
-          <ConstructionView>{{ blk, id }}</ConstructionView>
-        </>
+        <div className="cardcontainer">
+          <section>
+            <div className="cardcontent">
+              <h2 className="title">{id}</h2>
+              <div className="mapplacement">
+                <img src={mapURL} />
+              </div>
+              <div className="carddetails">
+                <p>
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                </p>
+                <ConstructionView>{{ blk, id }}</ConstructionView>
+              </div>
+            </div>
+          </section>
+        </div>
       );
     }
     if (loadingBlk && blk.status === "Testing and Commissioning") {
       return (
-        <>
-          <img src={mapURL} />
-          <h3>
-            Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
-          </h3>
-          <TNCView>{{ blk, id }}</TNCView>
-        </>
+        <div className="cardcontainer">
+          <section>
+            <div className="cardcontent">
+              <h2 className="title">{id}</h2>
+              <div className="mapplacement">
+                <img src={mapURL} />
+              </div>
+              <div className="carddetails">
+                <p>
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                </p>
+                <TNCView>{{ blk, id }}</TNCView>
+              </div>
+            </div>
+          </section>
+        </div>
       );
     }
     if (loadingBlk && blk.status === "Turned On") {
       return (
-        <>
-          <img src={mapURL} />
-          <h3>
-            Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
-          </h3>
-          <TurnonView>{blk}</TurnonView>;
-        </>
+        <div className="cardcontainer">
+          <section>
+            <div className="cardcontent">
+              <h2 className="title">{id}</h2>
+              <div className="mapplacement">
+                <img src={mapURL} />
+              </div>
+              <div className="carddetails">
+                <p>
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                </p>
+                <TurnonView>{blk}</TurnonView>
+              </div>
+            </div>
+          </section>
+        </div>
       );
     }
   } else {

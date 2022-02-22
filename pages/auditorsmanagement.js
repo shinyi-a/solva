@@ -78,7 +78,7 @@ const AuditorManagement = () => {
 
   return (
     <>
-      <h1>All Auditors</h1>
+      <h1 className="title">Auditors Management</h1>
       <Link href="/adduser">
         <a>
           <h4>Add Auditor</h4>

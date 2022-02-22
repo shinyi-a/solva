@@ -7,24 +7,25 @@ const TurnonView = ({ children }) => {
   };
 
   return (
-    <>
-      <h3>Postal Code: {children.postalcode}</h3>
-      <h4>Block Status: {children.status}</h4>
-      <h4>Project Manager in Charge: {children.projectmanager}</h4>
-      <h4>Construction Date: {changeDate(children.constructiondate)}</h4>
-      <h4>Testing and Commissioning Date: {changeDate(children.tncdate)}</h4>
-      <h4>Turned On Date: {changeDate(children.turnondate)}</h4>
-      <h4>Total Block Capacity (kWp): {children.capacity_kwp}</h4>
-      <h4>No. of Panels: {children.panels}</h4>
-      <h4>Panel Maximum Power (Pmax/W): {children.panelkwp}</h4>
+    <article>
+      <p>Postal Code: {children.postalcode}</p>
+      <p>Block Status: {children.status}</p>
+      <p>Project Manager in Charge: {children.projectmanager}</p>
+      <p>Construction Date: {changeDate(children.constructiondate)}</p>
+      <p>Testing and Commissioning Date: {changeDate(children.tncdate)}</p>
+      <p>Turned On Date: {changeDate(children.turnondate)}</p>
+      <p>Total Block Capacity (kWp): {children.capacity_kwp}</p>
+      <p>No. of Panels: {children.panels}</p>
+      <p>Panel Maximum Power (Pmax/W): {children.panelkwp}</p>
       <form method="get" action={children.tncreport_doc}>
         Testing and Commissioning Report:{" "}
         <button type="submit">Download</button>
       </form>
+      <br />
       <form method="get" action={children.asbulit_doc}>
         As-Built Drawing: <button type="submit">Download</button>
       </form>
-    </>
+    </article>
   );
 };
 

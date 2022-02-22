@@ -11,19 +11,19 @@ const TNCView = ({ children }) => {
   };
 
   return (
-    <>
-      <h3>Postal Code: {blk.postalcode}</h3>
-      <h4>Block Status: {blk.status}</h4>
-      <h4>Project Manager in Charge: {blk.projectmanager}</h4>
-      <h4>Construction Date: {changeDate(blk.constructiondate)}</h4>
-      <h4>Testing and Commissioning Date: {changeDate(blk.tncdate)}</h4>
-      <h4>Total Block Capacity (kWp): {blk.capacity_kwp}</h4>
-      <h4>No. of Panels: {blk.panels}</h4>
-      <h4>Panel Maximum Power (Pmax/W): {blk.panelkwp}</h4>
+    <article>
+      <p>Postal Code: {blk.postalcode}</p>
+      <p>Block Status: {blk.status}</p>
+      <p>Project Manager in Charge: {blk.projectmanager}</p>
+      <p>Construction Date: {changeDate(blk.constructiondate)}</p>
+      <p>Testing and Commissioning Date: {changeDate(blk.tncdate)}</p>
+      <p>Total Block Capacity (kWp): {blk.capacity_kwp}</p>
+      <p>No. of Panels: {blk.panels}</p>
+      <p>Panel Maximum Power (Pmax/W): {blk.panelkwp}</p>
       <button onClick={() => router.push(`/block/${id}/update`)}>
         Ready for Turn On
       </button>
-    </>
+    </article>
   );
 };
 

@@ -5,32 +5,46 @@ const NavBar = () => {
     <ul>
       <Link href="/addblock">
         <a>
-          <li>Add New Block</li>
+          <li className="navlink">
+            <span className="material-icons md-24">&#xeb62;</span> Add New Block
+          </li>
         </a>
       </Link>
       <Link href="/all">
         <a>
-          <li>All HDB Blocks</li>
+          <li className="navlink">
+            <span className="material-icons md-24">&#xe7ee;</span> All HDB
+            Blocks
+          </li>
         </a>
       </Link>
       <Link href="/pending">
         <a>
-          <li>Pending</li>
+          <li className="navlink">
+            <span className="material-icons md-24">&#xf1bb;</span> Pending
+          </li>
         </a>
       </Link>
       <Link href="/construction">
         <a>
-          <li>Construction</li>
+          <li className="navlink">
+            <span className="material-icons md-24">&#xea3c;</span> Construction
+          </li>
         </a>
       </Link>
       <Link href="/TnC">
         <a>
-          <li>Testing and Commissioning</li>
+          <li className="navlink">
+            <span className="material-icons md-24">&#xea3d;</span> Testing and
+            Commissioning
+          </li>
         </a>
       </Link>
       <Link href="/turnon">
         <a>
-          <li>Turned On</li>
+          <li className="navlink">
+            <span className="material-icons md-24">&#xec0f;</span> Turned On
+          </li>
         </a>
       </Link>
     </ul>

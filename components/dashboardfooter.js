@@ -1,8 +1,8 @@
-const Footer = () => {
+const DashFooter = () => {
   let footnote = " © Copyright " + new Date().getFullYear() + ", ";
   return (
-    <footer className="normalfooter">
-      <div className="footerdivider"></div>
+    <footer>
+      <div className="dashboardfooterdivider"></div>
       <br />
       {footnote}
       <span className="logo footerlogo">SOLVA</span>
@@ -10,4 +10,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default DashFooter;

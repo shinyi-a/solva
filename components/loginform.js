@@ -123,44 +123,73 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email: </label>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        onChange={handleChange}
-        onBlur={handleEmailBlur}
-      />
-      <br />
-      {emailEmpty ? <span>Please enter email.</span> : ""}
-      <br />
-      {emailValid === false ? (
-        <span>Please enter email in correct format.</span>
-      ) : (
-        ""
-      )}
-      <br />
-      <br />
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        onChange={handleChange}
-        onBlur={handlePasswordBlur}
-      />
-      <br />
-      {passwordEmpty ? <span>Please enter password.</span> : ""}
-      <br />
-      {passwordValid === false ? (
-        <span>Please enter between 6 to 20 letters for password.</span>
-      ) : (
-        ""
-      )}
-      <br />
-      <br />
-      <input type="submit" name="submitSignup" id="submitSignup" />
-    </form>
+    <div className="loginlanding">
+      <div className="loginbar">
+        <form onSubmit={handleSubmit} className="loginform">
+          <div className="loginlogo">
+            <img src="/logo.png" width="80px" height="80px" />
+            <span className="logo dashboardlogo loginlogopadding">SOLVA</span>
+          </div>
+          <br />
+          <div className="logininput">
+            <label htmlFor="email">Email:</label>
+            <br />
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="example@solva.com"
+              onChange={handleChange}
+              onBlur={handleEmailBlur}
+            />
+            <br />
+            {emailEmpty ? (
+              <span className="warning">Please enter email.</span>
+            ) : (
+              ""
+            )}
+            {emailValid === false ? (
+              <span className="warning">
+                Please enter email in correct format.
+              </span>
+            ) : (
+              ""
+            )}
+            <br />
+            <br />
+            <label htmlFor="password">Password: </label>
+            <br />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              onBlur={handlePasswordBlur}
+            />
+            <br />
+            {passwordEmpty ? (
+              <span className="warning">Please enter password.</span>
+            ) : (
+              ""
+            )}
+            {passwordValid === false ? (
+              <span className="warning">
+                Please enter between 6 to 20 letters for password.
+              </span>
+            ) : (
+              ""
+            )}
+            <br />
+            <br />
+            <input
+              className="loginbtn"
+              type="submit"
+              name="submitSignup"
+              id="submitSignup"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }

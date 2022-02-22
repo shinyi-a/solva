@@ -8,18 +8,18 @@ const ConstructionView = ({ children }) => {
   const splitDate = onlyDate.split("-");
   const displaydate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
   return (
-    <>
-      <h3>Postal Code: {blk.postalcode}</h3>
-      <h4>Block Status: {blk.status}</h4>
-      <h4>Project Manager in Charge: {blk.projectmanager}</h4>
-      <h4>Construction Date: {displaydate}</h4>
-      <h4>Total Block Capacity (kWp): {blk.capacity_kwp}</h4>
-      <h4>No. of Panels: {blk.panels}</h4>
-      <h4>Panel Maximum Power (Pmax/W): {blk.panelkwp}</h4>
+    <article>
+      <p>Postal Code: {blk.postalcode}</p>
+      <p>Block Status: {blk.status}</p>
+      <p>Project Manager in Charge: {blk.projectmanager}</p>
+      <p>Construction Date: {displaydate}</p>
+      <p>Total Block Capacity (kWp): {blk.capacity_kwp}</p>
+      <p>No. of Panels: {blk.panels}</p>
+      <p>Panel Maximum Power (Pmax/W): {blk.panelkwp}</p>
       <button onClick={() => router.push(`/block/${id}/update`)}>
         Ready for Testing and Commissioning
       </button>
-    </>
+    </article>
   );
 };
 

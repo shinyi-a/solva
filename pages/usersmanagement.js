@@ -78,7 +78,7 @@ const UserManagement = () => {
 
   return (
     <>
-      <h1>All Users</h1>
+      <h1 className="title">Users Management</h1>
       <Link href="/addadmin">
         <a>
           <h4>Add Staff/Auditor</h4>
