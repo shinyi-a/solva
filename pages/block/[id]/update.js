@@ -29,13 +29,37 @@ const BlockEdit = () => {
 
   if (loadingBlk) {
     if (blk.status === "Pending") {
-      return <UpdateContruction>{blk}</UpdateContruction>;
+      return (
+        <div className="updatecontainer">
+          <div className="updatecard">
+            <h2 className="title">Enter Construction Details</h2>
+            <h3>Postal Code: {id}</h3>
+            <UpdateContruction>{blk}</UpdateContruction>
+          </div>
+        </div>
+      );
     }
     if (loadingBlk && blk.status === "Construction") {
-      return <UpdateTnC>{blk}</UpdateTnC>;
+      return (
+        <div className="updatecontainer">
+          <div className="updatecard">
+            <h2 className="title">Enter T&amp;C Details</h2>
+            <h3>Postal Code: {id}</h3>
+            <UpdateTnC>{blk}</UpdateTnC>
+          </div>
+        </div>
+      );
     }
     if (loadingBlk && blk.status === "Testing and Commissioning") {
-      return <UpdateTurnon>{blk}</UpdateTurnon>;
+      return (
+        <div className="updatecontainer">
+          <div className="updatecard">
+            <h2 className="title">Enter Turn On Details</h2>
+            <h3>Postal Code: {id}</h3>
+            <UpdateTurnon>{blk}</UpdateTurnon>
+          </div>
+        </div>
+      );
     }
   } else {
     return <h1>loading...</h1>;

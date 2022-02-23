@@ -10,7 +10,9 @@ const ConstructionView = ({ children }) => {
   return (
     <article>
       <p>Postal Code: {blk.postalcode}</p>
-      <p>Block Status: {blk.status}</p>
+      <p>
+        Block Status: <span className="statushighlightcon">{blk.status}</span>
+      </p>
       <p>Project Manager in Charge: {blk.projectmanager}</p>
       <p>Construction Date: {displaydate}</p>
       <p>Total Block Capacity (kWp): {blk.capacity_kwp}</p>

@@ -128,9 +128,8 @@ export default function Login() {
         <form onSubmit={handleSubmit} className="loginform">
           <div className="loginlogo">
             <img src="/logo.png" width="80px" height="80px" />
-            <span className="logo dashboardlogo loginlogopadding">SOLVA</span>
+            <h1 className="logo loginlogo loginlogopadding">SOLVA</h1>
           </div>
-          <br />
           <div className="logininput">
             <label htmlFor="email">Email:</label>
             <br />

@@ -9,7 +9,9 @@ const Header = () => {
             <a>
               <div className="headerlogo">
                 <img src="/logo.png" width="80px" height="80px" />
-                <span className="logo dashboardlogo">SOLVA</span>
+                <a href="/dashboard">
+                  <h1 className="logo dashboardlogo">SOLVA</h1>
+                </a>
               </div>
             </a>
           </Link>

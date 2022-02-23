@@ -119,67 +119,87 @@ export default function AddAdmin() {
 
   return (
     <>
-      <h1 className="title">Add New User</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="firstname">Name: </label>
-        <input
-          type="text"
-          name="firstname"
-          id="firstname"
-          onChange={handleChange}
-          onBlur={handleFirstnameBlur}
-        />
-        <br />
-        {firstnameEmpty ? <span>Please enter name.</span> : ""}
-        <br />
-        <label htmlFor="email">Email: </label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          onBlur={handleEmailBlur}
-        />
-        <br />
-        {emailEmpty ? <span>Please enter email.</span> : ""}
-        {emailValid === false ? (
-          <span>Please enter email in correct format.</span>
-        ) : (
-          ""
-        )}
-        <br />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleChange}
-          onBlur={handlePasswordBlur}
-        />
-        <br />
-        {passwordEmpty ? <span>Please enter password.</span> : ""}
-        {passwordValid === false ? (
-          <span>Please enter between 6 to 20 letters for password.</span>
-        ) : (
-          ""
-        )}
-        <br />
-        <label htmlFor="usertype">Select a user role: </label>
-        <select
-          name="usertype"
-          id="usertype"
-          onChange={handleChange}
-          onBlur={handleUserBlur}
-        >
-          <option value="">User role</option>
-          <option value="Staff">Staff</option>
-          <option value="Auditor">Auditor</option>
-        </select>
-        <br />
-        {userRoleEmpty ? <span>Please select a user role.</span> : ""}
-        <br />
-        <input type="submit" name="submitSignup" id="submitSignup" />
-      </form>
+      <div className="addcontainer">
+        <div className="addcard">
+          <h2 className="title">Add New User</h2>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="firstname">Name: </label>
+            <input
+              type="text"
+              name="firstname"
+              id="firstname"
+              onChange={handleChange}
+              onBlur={handleFirstnameBlur}
+            />
+            <br />
+            {firstnameEmpty ? (
+              <span className="warning">Please enter name.</span>
+            ) : (
+              ""
+            )}
+            <br />
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              onBlur={handleEmailBlur}
+            />
+            <br />
+            {emailEmpty ? (
+              <span className="warning">Please enter email.</span>
+            ) : (
+              ""
+            )}
+            {emailValid === false ? (
+              <span className="warning">
+                Please enter email in correct format.
+              </span>
+            ) : (
+              ""
+            )}
+            <br />
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              onBlur={handlePasswordBlur}
+            />
+            <br />
+            {passwordEmpty ? (
+              <span className="warning">Please enter password.</span>
+            ) : (
+              ""
+            )}
+            {passwordValid === false ? (
+              <span className="warning">
+                Please enter between 6 to 20 letters for password.
+              </span>
+            ) : (
+              ""
+            )}
+            <br />
+            <label htmlFor="usertype">Select a user role: </label>
+            <select
+              name="usertype"
+              id="usertype"
+              onChange={handleChange}
+              onBlur={handleUserBlur}
+            >
+              <option value="">User role</option>
+              <option value="Staff">Staff</option>
+              <option value="Auditor">Auditor</option>
+            </select>
+            <br />
+            {userRoleEmpty ? <span>Please select a user role.</span> : ""}
+            <br />
+            <input type="submit" name="submitSignup" id="submitSignup" />
+          </form>
+        </div>
+      </div>
     </>
   );
 }

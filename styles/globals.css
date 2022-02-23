@@ -24,7 +24,9 @@ input[type="submit"],
 input[type="date"],
 input[type="file"],
 input[type="text"],
-::placeholder {
+input[type="number"],
+::placeholder,
+select {
   font-family: "Quicksand", sans-serif;
 }
 
@@ -32,8 +34,18 @@ input[type="text"],
   font-family: "Dongle";
 }
 
+.logo:hover {
+  cursor: default;
+}
+
 .title {
   font-family: "Lora", serif;
+}
+
+.loginlogo {
+  font-size: 80px;
+  margin: 0px;
+  padding-top: 12px;
 }
 
 .dashboardlogo {
@@ -53,6 +65,21 @@ ul {
 
 li {
   list-style-type: none;
+}
+
+.loginlogo,
+label,
+.warning,
+::placeholder,
+.title,
+.footerlogo,
+br {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 /* for google icons use start */
@@ -143,9 +170,10 @@ li {
 input[type="text"],
 input[type="password"] {
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid grey;
   background-color: transparent;
   font-size: 1em;
+  width: 200px;
 }
 
 ::placeholder {
@@ -179,6 +207,7 @@ input[type="password"] {
 }
 
 .loginbtn,
+input[type="submit"],
 button {
   background-color: #f9bc17;
   display: flex;
@@ -190,18 +219,17 @@ button {
 }
 
 .loginbtn:hover,
+input[type="submit"]:hover,
 button:hover {
   box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.3);
-}
-
-.loginlogopadding {
-  padding-top: 12px;
+  cursor: pointer;
 }
 
 .logininput {
-  width: 252.8px;
+  /* width: 252.8px; */
+  width: 200px;
   float: right;
-  margin-bottom: 25px;
+  margin: 25px 56px;
 }
 /* login page end */
 
@@ -211,6 +239,9 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   background-color: #e6e6e6;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
 .headernavlogo {
@@ -278,6 +309,7 @@ li.headerli {
 
 .dashboardblocks {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .graphcontainer {
@@ -292,6 +324,11 @@ li.headerli {
   text-align: center;
 }
 
+.postalhighlight:hover {
+  background-color: #f9bc17;
+  cursor: pointer;
+}
+
 /* end dashboard */
 
 /* start nav bar */
@@ -304,12 +341,16 @@ li.headerli {
   padding: 25px 10px 25px 30px;
 }
 
+.footercontainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .normalfooter {
-  /* position: fixed;
-  left: 0;
   bottom: 0;
-  width: 100%; */
-  padding: 0px 0px 15px 30px;
+  width: 90%;
+  padding: 0px 0px 15px 0px;
 }
 
 .dashboardfooter {
@@ -318,7 +359,8 @@ li.headerli {
   padding: 0px 0px 15px 0px;
 }
 
-.dashboardfooterdivider {
+.dashboardfooterdivider,
+.footerdivider {
   border-top: 1px solid #e6e6e6;
   width: 100%;
 }
@@ -329,11 +371,110 @@ li.headerli {
 }
 
 .cardcontent {
-  margin: 40px;
+  margin-bottom: 20px;
 }
 
 .mapplacement {
   height: 450px;
   width: 450px;
   background-color: transparent;
+}
+
+.statushighlightpen {
+  text-shadow: 0 0 5px pink, 0 0 10px red, 0 0 15px red, 0 0 20px red;
+  color: black;
+}
+
+.statushighlightcon {
+  text-shadow: 0 0 5px orange, 0 0 10px orange, 0 0 15px orange, 0 0 20px orange;
+  color: black;
+}
+
+.statushighlighttnc {
+  text-shadow: 0 0 5px #f9f517, 0 0 10px #f9f517, 0 0 15px #f9f517,
+    0 0 20px #f9f517;
+  color: black;
+}
+
+.statushighlighton {
+  text-shadow: 0 0 5px #8cff8c, 0 0 10px #17f917, 0 0 15px #17f917,
+    0 0 20px #17f917;
+  color: black;
+}
+
+.updatecontainer,
+.addcontainer,
+.blockviewcontainer,
+.managementcontainer {
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 208px);
+}
+
+.blockview {
+  width: 500px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.userdelbtn,
+.adduser {
+  background-color: #f9bc17;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+}
+
+.userdelbtn:hover,
+.adduser:hover {
+  box-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.managementpanel {
+  min-width: 700px;
+  width: 50%;
+  text-align: center;
+}
+
+.usercontainer {
+  width: 100%;
+}
+
+.useritem {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 0px 20px;
+}
+
+.userlink {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+}
+
+.userfirstname,
+.useremail,
+.userusertype {
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.userdel {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  /* align-self: center; */
+}
+
+.adduserbar {
+  width: 100%;
+  margin: 0px 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

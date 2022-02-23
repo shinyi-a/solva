@@ -72,7 +72,7 @@ const UpdateContruction = ({ children }) => {
         onBlur={handleDateBlur}
       />
       <br />
-      {dateEmpty ? <span>Please enter date.</span> : ""}
+      {dateEmpty ? <span className="warning">Please enter date.</span> : ""}
       <br />
       <label>Total Block Capacity (kWp): {displayCapacity}</label>
       <br />
@@ -91,7 +91,11 @@ const UpdateContruction = ({ children }) => {
         <option value="405">405 Wp</option>
       </select>
       <br />
-      {typeEmpty ? <span>Please select panel type.</span> : ""}
+      {typeEmpty ? (
+        <span className="warning">Please select panel type.</span>
+      ) : (
+        ""
+      )}
       <br />
       <label htmlFor="panels">No. of Panels: </label>
       <input
@@ -103,7 +107,11 @@ const UpdateContruction = ({ children }) => {
         onBlur={handlePanelBlur}
       />
       <br />
-      {panelEmpty ? <span>Please enter number of panels.</span> : ""}
+      {panelEmpty ? (
+        <span className="warning">Please enter number of panels.</span>
+      ) : (
+        ""
+      )}
       <br />
       <input type="submit" />
     </form>

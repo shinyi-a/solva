@@ -48,7 +48,7 @@ const UpdateTnC = ({ children }) => {
         onBlur={handleBlur}
       />
       <br />
-      {inputEmpty ? <span>Please enter date.</span> : ""}
+      {inputEmpty ? <span className="warning">Please enter date.</span> : ""}
       <br />
       <input type="submit" />
     </form>

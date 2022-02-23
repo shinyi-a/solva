@@ -2,16 +2,20 @@ import Link from "next/link";
 
 const TnC = ({ hdbblocks }) => {
   return (
-    <>
-      <h1 className="title">All Testing and Commissioning Blocks</h1>
-      <ul>
-        {hdbblocks.map((blk) => (
-          <Link href={`/block/${blk.postalcode}`} key={blk._id}>
-            <li key={blk._id}> {blk.postalcode} </li>
-          </Link>
-        ))}
-      </ul>
-    </>
+    <div className="blockviewcontainer">
+      <div className="blockview">
+        <h2 className="title">All Testing and Commissioning Blocks</h2>
+        <ul>
+          {hdbblocks.map((blk) => (
+            <Link href={`/block/${blk.postalcode}`} key={blk._id}>
+              <li key={blk._id}>
+                <span className="postalhighlight">{blk.postalcode}</span>
+              </li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 

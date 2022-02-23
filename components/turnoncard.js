@@ -101,7 +101,7 @@ const UpdateTurnon = ({ children }) => {
         onBlur={handleDateBlur}
       />
       <br />
-      {dateEmpty ? <span>Please enter date.</span> : ""}
+      {dateEmpty ? <span className="warning">Please enter date.</span> : ""}
       <br />
       <label htmlFor="tncreport_doc">
         Upload Testing and Commissioning Report:{" "}
@@ -115,7 +115,9 @@ const UpdateTurnon = ({ children }) => {
       />
       <br />
       {reportEmpty ? (
-        <span>Please upload testing and commissioning report.</span>
+        <span className="warning">
+          Please upload testing and commissioning report.
+        </span>
       ) : (
         ""
       )}
@@ -129,7 +131,11 @@ const UpdateTurnon = ({ children }) => {
         onBlur={handleDrawingBlur}
       />
       <br />
-      {drawingEmpty ? <span>Please upload as-built drawing.</span> : ""}
+      {drawingEmpty ? (
+        <span className="warning">Please upload as-built drawing.</span>
+      ) : (
+        ""
+      )}
       <br />
       <input type="submit" onClick={handleSubmit} />
     </form>

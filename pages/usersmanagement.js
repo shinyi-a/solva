@@ -60,16 +60,27 @@ const UserManagement = () => {
   };
 
   const allData = () => (
-    <div>
+    <div className="usercontainer">
       <ul>
         {allUsers.map((user) => (
           <li key={user._id}>
-            <Link href={`/user/${user._id}`}>
-              <a>
-                {user.firstname}, {user.email}, {user.usertype}{" "}
-              </a>
-            </Link>
-            <button onClick={() => handleDelete(user._id)}>Delete User</button>
+            <div className="useritem">
+              <Link href={`/user/${user._id}`}>
+                <a className="userlink">
+                  <div className="userfirstname">{user.firstname}</div>
+                  <div className="useremail">{user.email}</div>
+                  <div className="userusertype">{user.usertype}</div>
+                </a>
+              </Link>
+              <div className="userdel">
+                <button
+                  className="userdelbtn"
+                  onClick={() => handleDelete(user._id)}
+                >
+                  Delete User
+                </button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
@@ -77,15 +88,21 @@ const UserManagement = () => {
   );
 
   return (
-    <>
-      <h1 className="title">Users Management</h1>
-      <Link href="/addadmin">
-        <a>
-          <h4>Add Staff/Auditor</h4>
-        </a>
-      </Link>
-      {loadingAll ? allData() : <h3>Loading...</h3>}
-    </>
+    <div className="managementcontainer">
+      <div className="managementpanel">
+        <h2 className="title">Users Management</h2>
+        <div className="adduserbar">
+          <Link href="/addadmin">
+            <a>
+              <button className="adduser">
+                <span className="material-icons md-24">&#xe7fe;</span> Add User
+              </button>
+            </a>
+          </Link>
+        </div>
+        {loadingAll ? allData() : <h3>Loading...</h3>}
+      </div>
+    </div>
   );
 };
 
