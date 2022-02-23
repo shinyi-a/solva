@@ -12,10 +12,6 @@ const TNCView = ({ children }) => {
 
   return (
     <article>
-      <p>Postal Code: {blk.postalcode}</p>
-      <p>
-        Block Status: <span className="statushighlighttnc">{blk.status}</span>
-      </p>
       <p>Project Manager in Charge: {blk.projectmanager}</p>
       <p>Construction Date: {changeDate(blk.constructiondate)}</p>
       <p>Testing and Commissioning Date: {changeDate(blk.tncdate)}</p>

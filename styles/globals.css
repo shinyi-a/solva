@@ -376,8 +376,11 @@ li.headerli {
 
 .mapplacement {
   height: 450px;
-  width: 450px;
+  width: 100%;
   background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .statushighlightpen {
@@ -405,7 +408,8 @@ li.headerli {
 .updatecontainer,
 .addcontainer,
 .blockviewcontainer,
-.managementcontainer {
+.managementcontainer,
+.cardcontainer {
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 208px);

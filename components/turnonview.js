@@ -8,11 +8,6 @@ const TurnonView = ({ children }) => {
 
   return (
     <article>
-      <p>Postal Code: {children.postalcode}</p>
-      <p>
-        Block Status:{" "}
-        <span className="statushighlighton">{children.status}</span>
-      </p>
       <p>Project Manager in Charge: {children.projectmanager}</p>
       <p>Construction Date: {changeDate(children.constructiondate)}</p>
       <p>Testing and Commissioning Date: {changeDate(children.tncdate)}</p>

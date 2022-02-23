@@ -50,12 +50,17 @@ const BlockDetails = () => {
           <section>
             <div className="cardcontent">
               <h2 className="title">{id}</h2>
+              <h3>
+                Block Status:{" "}
+                <span className="statushighlightpen">{blk.status}</span>
+              </h3>
               <div className="mapplacement">
                 <img src={mapURL} />
               </div>
               <div className="carddetails">
                 <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                  {map.POSTAL}
                 </p>
                 <PendingView>{{ blk, id }}</PendingView>
               </div>
@@ -70,12 +75,17 @@ const BlockDetails = () => {
           <section>
             <div className="cardcontent">
               <h2 className="title">{id}</h2>
+              <h3>
+                Block Status:{" "}
+                <span className="statushighlightcon">{blk.status}</span>
+              </h3>
               <div className="mapplacement">
                 <img src={mapURL} />
               </div>
               <div className="carddetails">
                 <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                  {map.POSTAL}
                 </p>
                 <ConstructionView>{{ blk, id }}</ConstructionView>
               </div>
@@ -90,12 +100,17 @@ const BlockDetails = () => {
           <section>
             <div className="cardcontent">
               <h2 className="title">{id}</h2>
+              <h3>
+                Block Status:{" "}
+                <span className="statushighlighttnc">{blk.status}</span>
+              </h3>
               <div className="mapplacement">
                 <img src={mapURL} />
               </div>
               <div className="carddetails">
                 <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                  {map.POSTAL}
                 </p>
                 <TNCView>{{ blk, id }}</TNCView>
               </div>
@@ -110,12 +125,17 @@ const BlockDetails = () => {
           <section>
             <div className="cardcontent">
               <h2 className="title">{id}</h2>
+              <h3>
+                Block Status:{" "}
+                <span className="statushighlighton">{blk.status}</span>
+              </h3>
               <div className="mapplacement">
                 <img src={mapURL} />
               </div>
               <div className="carddetails">
                 <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}
+                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                  {map.POSTAL}
                 </p>
                 <TurnonView>{blk}</TurnonView>
               </div>
