@@ -65,7 +65,7 @@ const Dashboard = () => {
   useEffect(() => {
     loadConstruction();
     loadTnC();
-  }, [userEmail]);
+  }, [userEmail, userRole]);
 
   // useEffect(() => {
   //   console.log("dashboard: ", userLoginState.isLoggedIn);
@@ -153,7 +153,6 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-
               <div className="dashboardfooter">
                 <DashFooter />
               </div>
