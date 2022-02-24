@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import UserContext from "../context/loginstate";
 import jwtDecode from "jwt-decode";
@@ -15,6 +15,7 @@ export default function Login() {
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
   const [loginError, SetLoginError] = useState(null);
+  const [userRole, setUserRole] = useState();
 
   //to validate email
   const validateEmail = (email) => {
@@ -94,10 +95,23 @@ export default function Login() {
         //setState to login
         userLoginContext.setLoginState(true);
         SetLoginError(null);
+        let currenttoken = decodedResponse.token;
+        let decodedToken = jwtDecode(currenttoken);
+        if (decodedToken) {
+          setUserRole(decodedToken.role);
+        }
+        if (userRole) {
+          if (userRole === "Auditor") {
+            router.push("/turnon");
+          } else {
+            router.push("/dashboard");
+          }
+        }
+
         //redirect user to home page (for when user just logged in, prior not logged in before)
-        console.log("this is stored into storage");
-        console.log(decodedResponse.token);
-        router.push("/dashboard");
+        // console.log("this is stored into storage");
+        // console.log(decodedResponse.token);
+        // router.push("/dashboard");
         // try {
         //   router.push("/dashboard");
         // } catch (error) {
