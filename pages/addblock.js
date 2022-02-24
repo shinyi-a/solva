@@ -1,6 +1,7 @@
 // import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import jwtDecode from "jwt-decode";
 
 export default function AddBlock() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function AddBlock() {
     panelkwp: "",
     status: "Pending",
     projectmanager: "",
+    email: "",
     pendingdate: new Date(),
     constructiondate: "",
     tncdate: "",
@@ -20,12 +22,37 @@ export default function AddBlock() {
   });
   const [postalEmpty, setPostalEmpty] = useState(null);
   const [postalValid, setPostalValid] = useState(null);
-  //   const cap = Math.round(panels * capacity_kwp * 100 + Number.EPSILON) / 100;
+  const [userRole, setUserRole] = useState();
+
   //to validate postal length - must input 6 numbers
   const validatePostal = (pwd) => {
     const re = /^[0-9]{6,6}$/;
     return re.test(pwd);
   };
+
+  //check user type
+  const decodeToken = () => {
+    console.log("Inside Header.tsx: decoding local storage token");
+    let token = localStorage.getItem("token");
+    console.log("Current Token: ", token);
+
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      console.log("Current decoded Token", decodedToken);
+      if (decodedToken) {
+        setUserRole(decodedToken.role);
+        setBlockInput({
+          ...blockInput,
+          email: decodedToken.sub,
+          projectmanager: decodedToken.firstname,
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    decodeToken();
+  }, []);
 
   //set user input
   const handleChange = (e) => {
@@ -50,7 +77,7 @@ export default function AddBlock() {
   //post user input
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (blockInput.postalcode && postalValid) {
+    if (blockInput.postalcode && postalValid && userRole === "Staff") {
       //   axios
       //     .post(`${process.env.API_ENDPOINT}/block`, blockInput)
       //     .then(function (response) {
@@ -69,6 +96,8 @@ export default function AddBlock() {
           },
         });
         const data = await res.json();
+        console.log("this is sent to server");
+        console.log(blockInput);
         router.push(`/block/${data.postalcode}`);
       } catch (err) {
         console.log(err);

@@ -61,14 +61,14 @@ const UserDetails = () => {
   return (
     <div>
       <h1>{user.firstname}</h1>
-      {loading ? (
+      {/* {loading ? (
         <>
           <h4>User Type: {user.usertype}</h4>
           <h4>Email: {user.email}</h4>
         </>
       ) : (
         ""
-      )}
+      )} */}
       {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>}
     </div>
   );

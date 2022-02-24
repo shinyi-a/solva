@@ -1,20 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Graph from "../components/turnongraph";
 import NavBar from "../components/navbar";
 import DashFooter from "../components/dashboardfooter";
+import UserContext from "../context/loginstate";
+import { useRouter } from "next/router";
+import jwtDecode from "jwt-decode";
 
 const Dashboard = () => {
+  const userLoginState = useContext(UserContext);
   const [constructionHDB, setConstructionHDB] = useState([]);
   const [tncHDB, setTnCHDB] = useState([]);
   const [loadingConstruction, setLoadingConstruction] = useState(false);
   const [loadingTnC, setLoadingTnC] = useState(false);
+  const [userRole, setUserRole] = useState();
+  const [userEmail, setUserEmail] = useState();
+  const router = useRouter();
+
+  const decodeToken = () => {
+    console.log("Inside Header.tsx: decoding local storage token");
+    let token = localStorage.getItem("token");
+    console.log("Current Token: ", token);
+
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      console.log("Current decoded Token", decodedToken);
+      if (decodedToken) {
+        setUserRole(decodedToken.role);
+        setUserEmail(decodedToken.sub);
+      }
+    }
+  };
 
   const loadConstruction = async () => {
     try {
       const res = await axios.get(
-        `${process.env.API_ENDPOINT}/block/construction`
+        `${process.env.API_ENDPOINT}/block/construction/${userEmail}`
       );
       setConstructionHDB(res.data);
       setLoadingConstruction(true);
@@ -25,8 +47,11 @@ const Dashboard = () => {
 
   const loadTnC = async () => {
     try {
-      const res = await axios.get(`${process.env.API_ENDPOINT}/block/tnc`);
+      const res = await axios.get(
+        `${process.env.API_ENDPOINT}/block/tnc/${userEmail}`
+      );
       setTnCHDB(res.data);
+      console.log(res.data);
       setLoadingTnC(true);
     } catch (err) {
       console.log(err);
@@ -34,9 +59,20 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    decodeToken();
+  }, []);
+
+  useEffect(() => {
     loadConstruction();
     loadTnC();
-  }, []);
+  }, [userEmail]);
+
+  // useEffect(() => {
+  //   console.log("dashboard: ", userLoginState.isLoggedIn);
+  //   if (!userLoginState.isLoggedIn) {
+  //     router.push("/");
+  //   }
+  // }, [userLoginState]);
 
   // const constructionData = constructionHDB.map((blk) => {
   //   return (
@@ -48,7 +84,7 @@ const Dashboard = () => {
 
   const constructionData = () => (
     <>
-      <h2 className="title">Construction</h2>
+      <h2 className="title">Your Construction Blocks</h2>
       <ul>
         {constructionHDB.map((blk) => (
           <li key={blk._id}>
@@ -67,7 +103,7 @@ const Dashboard = () => {
 
   const TnCData = () => (
     <>
-      <h2 className="title">Testing and Commissioning</h2>
+      <h2 className="title">Your T&amp;C Blocks</h2>
       <ul>
         {tncHDB.map((blk) => (
           <li key={blk._id}>
@@ -90,32 +126,98 @@ const Dashboard = () => {
   //   );
   // });
 
-  return (
-    <div className="dashboardcontainer">
-      <div className="dashboardnavbar">
-        <NavBar />
-      </div>
-      <div className="dashboardcontentcontainer">
-        <div className="dashboardcontent">
-          <div className="dashboardtop">
-            <h2 className="title">Turned On Blocks in a Year</h2>
-            <Graph />
+  if (userLoginState.isLoggedIn) {
+    if (userRole === "Staff") {
+      return (
+        <div className="dashboardcontainer">
+          <div className="dashboardnavbar">
+            <NavBar />
           </div>
-          <div className="dashboardblocks">
-            <div className="dashboardconstruct">
-              {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
+          <div className="dashboardcontentcontainer">
+            <div className="dashboardcontent">
+              <div className="dashboardcontentnofooter">
+                <div className="dashboardtop">
+                  <h2 className="title">Turned On Blocks in a Year</h2>
+                  <Graph />
+                </div>
+                <div className="dashboardblocks">
+                  <div className="dashboardconstruct">
+                    {loadingConstruction ? (
+                      constructionData()
+                    ) : (
+                      <h3>Loading...</h3>
+                    )}
+                  </div>
+                  <div className="dashboardtnc">
+                    {loadingTnC ? TnCData() : <h3>Loading...</h3>}
+                  </div>
+                </div>
+              </div>
+
+              <div className="dashboardfooter">
+                <DashFooter />
+              </div>
             </div>
-            <div className="dashboardtnc">
-              {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-            </div>
-          </div>
-          <div className="dashboardfooter">
-            <DashFooter />
           </div>
         </div>
-      </div>
-    </div>
-  );
+      );
+    }
+    if (userRole === "Admin") {
+      return (
+        <div className="dashboardcontainer">
+          <div className="dashboardnavbar">
+            <NavBar />
+          </div>
+          <div className="dashboardcontentcontainer">
+            <div className="dashboardcontent">
+              <div className="dashboardcontentnofooter">
+                <div className="dashboardtop">
+                  <h2 className="title">Turned On Blocks in a Year</h2>
+                  <Graph />
+                </div>
+              </div>
+              <div className="dashboardfooter">
+                <DashFooter />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (!userRole) {
+      return <div></div>;
+    }
+  } else {
+    return <div></div>;
+  }
+
+  // return (
+  //   <div className="dashboardcontainer">
+  //     <div className="dashboardnavbar">
+  //       <NavBar />
+  //     </div>
+  //     <div className="dashboardcontentcontainer">
+  //       <div className="dashboardcontent">
+  //         <div className="dashboardtop">
+  //           <h2 className="title">Turned On Blocks in a Year</h2>
+  //           <Graph />
+  //         </div>
+  //         <div className="dashboardblocks">
+  //           <div className="dashboardconstruct">
+  //             {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
+  //           </div>
+  //           <div className="dashboardtnc">
+  //             {loadingTnC ? TnCData() : <h3>Loading...</h3>}
+  //           </div>
+  //         </div>
+  //         <div className="dashboardfooter">
+  //           <DashFooter />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 };
 
 export default Dashboard;

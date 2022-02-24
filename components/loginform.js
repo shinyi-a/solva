@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import UserContext from "../context/loginstate";
+import jwtDecode from "jwt-decode";
 
 export default function Login() {
   const router = useRouter();
@@ -93,13 +94,15 @@ export default function Login() {
         //setState to login
         userLoginContext.setLoginState(true);
         SetLoginError(null);
-        //redirect user to home page
-
-        try {
-          router.push("/dashboard");
-        } catch (error) {
-          console.log(error.message);
-        }
+        //redirect user to home page (for when user just logged in, prior not logged in before)
+        console.log("this is stored into storage");
+        console.log(decodedResponse.token);
+        router.push("/dashboard");
+        // try {
+        //   router.push("/dashboard");
+        // } catch (error) {
+        //   console.log(error.message);
+        // }
       } catch (err) {
         try {
           console.log(err);
@@ -122,73 +125,79 @@ export default function Login() {
     }
   };
 
-  return (
-    <div className="loginlanding">
-      <div className="loginbar">
-        <form onSubmit={handleSubmit} className="loginform">
-          <div className="loginlogo">
-            <img src="/logo.png" width="80px" height="80px" />
-            <h1 className="logo loginlogo loginlogopadding">SOLVA</h1>
-          </div>
-          <div className="logininput">
-            <label htmlFor="email">Email:</label>
-            <br />
-            <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="example@solva.com"
-              onChange={handleChange}
-              onBlur={handleEmailBlur}
-            />
-            <br />
-            {emailEmpty ? (
-              <span className="warning">Please enter email.</span>
-            ) : (
-              ""
-            )}
-            {emailValid === false ? (
-              <span className="warning">
-                Please enter email in correct format.
-              </span>
-            ) : (
-              ""
-            )}
-            <br />
-            <br />
-            <label htmlFor="password">Password: </label>
-            <br />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={handleChange}
-              onBlur={handlePasswordBlur}
-            />
-            <br />
-            {passwordEmpty ? (
-              <span className="warning">Please enter password.</span>
-            ) : (
-              ""
-            )}
-            {passwordValid === false ? (
-              <span className="warning">
-                Please enter between 6 to 20 letters for password.
-              </span>
-            ) : (
-              ""
-            )}
-            <br />
-            <br />
-            <input
-              className="loginbtn"
-              type="submit"
-              name="submitSignup"
-              id="submitSignup"
-            />
-          </div>
-        </form>
+  if (!userLoginContext.isLoggedIn) {
+    return (
+      <div className="loginlanding">
+        <div className="loginbar">
+          <form onSubmit={handleSubmit} className="loginform">
+            <div className="loginlogo">
+              <img src="/logo.png" width="80px" height="80px" />
+              <h1 className="logo loginlogo loginlogopadding">SOLVA</h1>
+            </div>
+            <div className="logininput">
+              <label htmlFor="email">Email:</label>
+              <br />
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder="example@solva.com"
+                onChange={handleChange}
+                onBlur={handleEmailBlur}
+              />
+              <br />
+              {emailEmpty ? (
+                <span className="warning">Please enter email.</span>
+              ) : (
+                ""
+              )}
+              {emailValid === false ? (
+                <span className="warning">
+                  Please enter email in correct format.
+                </span>
+              ) : (
+                ""
+              )}
+              <br />
+              <br />
+              <label htmlFor="password">Password: </label>
+              <br />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={handleChange}
+                onBlur={handlePasswordBlur}
+              />
+              <br />
+              {passwordEmpty ? (
+                <span className="warning">Please enter password.</span>
+              ) : (
+                ""
+              )}
+              {passwordValid === false ? (
+                <span className="warning">
+                  Please enter between 6 to 20 letters for password.
+                </span>
+              ) : (
+                ""
+              )}
+              <br />
+              <br />
+              <input
+                className="loginbtn"
+                type="submit"
+                name="submitSignup"
+                id="submitSignup"
+              />
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (!userLoginContext || userLoginContext.isLoggedIn) {
+    return <></>;
+  }
 }
