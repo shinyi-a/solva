@@ -62,7 +62,7 @@ const Header = () => {
     }
   };
 
-  const adminHeader = () => (
+  const adminHeader = (
     <header>
       <div className="headernav">
         <div className="headernavlogo">
@@ -110,7 +110,7 @@ const Header = () => {
     </header>
   );
 
-  const staffHeader = () => (
+  const staffHeader = (
     <header>
       <div className="headernav">
         <div className="headernavlogo">
@@ -158,11 +158,11 @@ const Header = () => {
     </header>
   );
 
-  const auditorHeader = () => (
+  const auditorHeader = (
     <header>
       <div className="headernav">
         <div className="headernavlogo">
-          <Link href="/dashboard">
+          <Link href="/turnon">
             <a>
               <div className="headerlogo">
                 <img src="/logo.png" width="80px" height="80px" />
@@ -184,8 +184,8 @@ const Header = () => {
             </li>
             <li className="headerli">
               <div className="headericonlast">
-                <Link href="/" onClick={handleLogoutClick}>
-                  <a>
+                <Link href="/">
+                  <a onClick={handleLogoutClick}>
                     <span className="material-icons md-36">&#xe9ba;</span>
                   </a>
                 </Link>
@@ -198,16 +198,16 @@ const Header = () => {
   );
 
   if (userRole === "Admin") {
-    return adminHeader();
+    return adminHeader;
   }
   if (userRole === "Staff") {
-    return staffHeader();
+    return staffHeader;
   }
   if (userRole === "Auditor") {
-    return auditorHeader();
+    return auditorHeader;
   }
   if (!userRole) {
-    return <div>loading</div>;
+    return <div></div>;
   }
 };
 

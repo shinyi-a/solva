@@ -15,6 +15,7 @@ export default function Login() {
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
   const [loginError, SetLoginError] = useState(null);
+  const [emptyInput, setEmptyInput] = useState(null);
   const [userRole, setUserRole] = useState();
 
   //to validate email
@@ -34,6 +35,8 @@ export default function Login() {
   const handleChange = (e) => {
     const label = e.target.name;
     const value = e.target.value;
+    SetLoginError(false);
+    setEmptyInput(false);
     setLoginInput({ ...loginInput, [label]: value });
     console.log(loginInput);
   };
@@ -64,6 +67,7 @@ export default function Login() {
   //post user input
   const handleSubmit = async (e) => {
     e.preventDefault();
+    SetLoginError(false);
     if (
       loginInput.email &&
       loginInput.password &&
@@ -87,25 +91,35 @@ export default function Login() {
             status: decodedResponse.status,
             message: decodedResponse.message,
           });
+          setLoginInput({ email: "", password: "" });
+          email.value = "";
+          password.value = "";
           console.log("invalid email or password");
         }
 
         //Assign JWT to local storage once login successful
-        localStorage.setItem("token", decodedResponse.token);
-        //setState to login
-        userLoginContext.setLoginState(true);
-        SetLoginError(null);
-        let currenttoken = decodedResponse.token;
-        let decodedToken = jwtDecode(currenttoken);
-        if (decodedToken) {
-          setUserRole(decodedToken.role);
-        }
-        if (userRole) {
-          if (userRole === "Auditor") {
-            router.push("/turnon");
-          } else {
-            router.push("/dashboard");
+        if (decodedResponse.token !== undefined) {
+          localStorage.setItem("token", decodedResponse.token);
+          //setState to login
+          userLoginContext.setLoginState(true);
+          SetLoginError(null);
+          let currenttoken = decodedResponse.token;
+          let decodedToken = jwtDecode(currenttoken);
+          if (decodedToken) {
+            setUserRole(decodedToken.role);
+            if (decodedToken.role === "Auditor") {
+              router.push("/turnon");
+            } else {
+              router.push("/dashboard");
+            }
           }
+          // if (userRole) {
+          //   if (userRole === "Auditor") {
+          //     router.push("/turnon");
+          //   } else {
+          //     router.push("/dashboard");
+          //   }
+          // }
         }
 
         //redirect user to home page (for when user just logged in, prior not logged in before)
@@ -118,6 +132,7 @@ export default function Login() {
         //   console.log(error.message);
         // }
       } catch (err) {
+        router.push("/404");
         try {
           console.log(err);
         } catch (modalWindowError) {
@@ -135,6 +150,7 @@ export default function Login() {
       //       console.log(error);
       //     });
     } else {
+      setEmptyInput(true);
       console.log("err");
     }
   };
@@ -204,6 +220,20 @@ export default function Login() {
                 name="submitSignup"
                 id="submitSignup"
               />
+              {loginError ? (
+                <span className="warning">
+                  Wrong email or password. Try again.
+                </span>
+              ) : (
+                ""
+              )}
+              {emptyInput ? (
+                <span className="warning">
+                  Empty/invalid field(s). Please enter login credentials.
+                </span>
+              ) : (
+                ""
+              )}
             </div>
           </form>
         </div>

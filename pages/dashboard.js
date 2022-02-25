@@ -64,15 +64,36 @@ const Dashboard = () => {
 
   useEffect(() => {
     loadConstruction();
+  }, [userEmail, userRole]);
+
+  useEffect(() => {
     loadTnC();
   }, [userEmail, userRole]);
 
-  // useEffect(() => {
-  //   console.log("dashboard: ", userLoginState.isLoggedIn);
-  //   if (!userLoginState.isLoggedIn) {
-  //     router.push("/");
+  useEffect(() => {
+    console.log("dashboard: ", userLoginState.isLoggedIn);
+    if (!userLoginState.isLoggedIn) {
+      router.push("/");
+    }
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (userRole === "Auditor") {
+      router.push("/turnon");
+    }
+  }, [userRole]);
+
+  // if (userRole) {
+  //   if (userRole === "Staff") {
+  //     dashboardview = staffView;
   //   }
-  // }, [userLoginState]);
+  //   if (userRole === "Admin") {
+  //     dashboardview = adminView;
+  //   }
+  //   if (userRole === "Staff") {
+  //     router.push("/turnon");
+  //   }
+  // }
 
   // const constructionData = constructionHDB.map((blk) => {
   //   return (
@@ -126,70 +147,135 @@ const Dashboard = () => {
   //   );
   // });
 
-  if (userLoginState.isLoggedIn) {
-    if (userRole === "Staff") {
-      return (
-        <div className="dashboardcontainer">
-          <div className="dashboardnavbar">
-            <NavBar />
-          </div>
-          <div className="dashboardcontentcontainer">
-            <div className="dashboardcontent">
-              <div className="dashboardcontentnofooter">
-                <div className="dashboardtop">
-                  <h2 className="title">Turned On Blocks in a Year</h2>
-                  <Graph />
-                </div>
-                <div className="dashboardblocks">
-                  <div className="dashboardconstruct">
-                    {loadingConstruction ? (
-                      constructionData()
-                    ) : (
-                      <h3>Loading...</h3>
-                    )}
-                  </div>
-                  <div className="dashboardtnc">
-                    {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-                  </div>
-                </div>
+  let staffView = (
+    <div className="dashboardcontainer">
+      <div className="dashboardnavbar">
+        <NavBar />
+      </div>
+      <div className="dashboardcontentcontainer">
+        <div className="dashboardcontent">
+          <div className="dashboardcontentnofooter">
+            <div className="dashboardtop">
+              <h2 className="title">Turned On Blocks in a Year</h2>
+              <Graph />
+            </div>
+            <div className="dashboardblocks">
+              <div className="dashboardconstruct">
+                {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
               </div>
-              <div className="dashboardfooter">
-                <DashFooter />
+              <div className="dashboardtnc">
+                {loadingTnC ? TnCData() : <h3>Loading...</h3>}
               </div>
             </div>
           </div>
-        </div>
-      );
-    }
-    if (userRole === "Admin") {
-      return (
-        <div className="dashboardcontainer">
-          <div className="dashboardnavbar">
-            <NavBar />
-          </div>
-          <div className="dashboardcontentcontainer">
-            <div className="dashboardcontent">
-              <div className="dashboardcontentnofooter">
-                <div className="dashboardtop">
-                  <h2 className="title">Turned On Blocks in a Year</h2>
-                  <Graph />
-                </div>
-              </div>
-              <div className="dashboardfooter">
-                <DashFooter />
-              </div>
-            </div>
+          <div className="dashboardfooter">
+            <DashFooter />
           </div>
         </div>
-      );
-    }
+      </div>
+    </div>
+  );
 
-    if (!userRole) {
-      return <div></div>;
-    }
-  } else {
+  let adminView = (
+    <div className="dashboardcontainer">
+      <div className="dashboardnavbar">
+        <NavBar />
+      </div>
+      <div className="dashboardcontentcontainer">
+        <div className="dashboardcontent">
+          <div className="dashboardcontentnofooter">
+            <div className="dashboardtop">
+              <h2 className="title">Turned On Blocks in a Year</h2>
+              <Graph />
+            </div>
+          </div>
+          <div className="dashboardfooter">
+            <DashFooter />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (userRole === "Staff") {
+    return staffView;
+  }
+  if (userRole === "Admin") {
+    return adminView;
+  }
+
+  if (!userRole) {
     return <div></div>;
   }
+
+  // return
+
+  // return (<>{userLoginState.isLoggedIn ? (dashboardview) : ""}</>);
+
+  // if (userLoginState.isLoggedIn) {
+  //   if (userRole === "Staff") {
+  //     return (
+  //       <div className="dashboardcontainer">
+  //         <div className="dashboardnavbar">
+  //           <NavBar />
+  //         </div>
+  //         <div className="dashboardcontentcontainer">
+  //           <div className="dashboardcontent">
+  //             <div className="dashboardcontentnofooter">
+  //               <div className="dashboardtop">
+  //                 <h2 className="title">Turned On Blocks in a Year</h2>
+  //                 <Graph />
+  //               </div>
+  //               <div className="dashboardblocks">
+  //                 <div className="dashboardconstruct">
+  //                   {loadingConstruction ? (
+  //                     constructionData()
+  //                   ) : (
+  //                     <h3>Loading...</h3>
+  //                   )}
+  //                 </div>
+  //                 <div className="dashboardtnc">
+  //                   {loadingTnC ? TnCData() : <h3>Loading...</h3>}
+  //                 </div>
+  //               </div>
+  //             </div>
+  //             <div className="dashboardfooter">
+  //               <DashFooter />
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  //   if (userRole === "Admin") {
+  //     return (
+  //       <div className="dashboardcontainer">
+  //         <div className="dashboardnavbar">
+  //           <NavBar />
+  //         </div>
+  //         <div className="dashboardcontentcontainer">
+  //           <div className="dashboardcontent">
+  //             <div className="dashboardcontentnofooter">
+  //               <div className="dashboardtop">
+  //                 <h2 className="title">Turned On Blocks in a Year</h2>
+  //                 <Graph />
+  //               </div>
+  //             </div>
+  //             <div className="dashboardfooter">
+  //               <DashFooter />
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+
+  //   if (!userRole) {
+  //     return <div></div>;
+  //   }
+  // } else {
+  //   return <div></div>;
+  // }
 
   // return (
   //   <div className="dashboardcontainer">
