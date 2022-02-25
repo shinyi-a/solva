@@ -14,7 +14,6 @@ const UpdateTnC = ({ children }) => {
   const handleChange = (e) => {
     let dateinput = e.target.value;
     setTncdateInput({ ...tncdateInput, tncdate: dateinput });
-    console.log(tncdateInput);
   };
 
   const handleBlur = () => {
@@ -28,9 +27,9 @@ const UpdateTnC = ({ children }) => {
         axios.put(`${process.env.API_ENDPOINT}/block/${id}`, tncdateInput);
         router.push(`/block/${id}`);
       } catch (err) {
-        // router.push("/404");
         console.log(err);
         console.log("update failed: ", err);
+        router.push("/404");
       }
     } else {
       console.log("err");

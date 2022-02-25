@@ -1,5 +1,3 @@
-//get logged in user as project manager (only staff account can see this)
-//get logged in user email
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -23,7 +21,6 @@ const UpdateContruction = ({ children }) => {
       blockcapacity = (userInput.panelkwp * userInput.panels) / 1000;
     }
     setUserInput({ ...userInput, capacity_kwp: blockcapacity, [label]: value });
-    console.log(userInput);
   };
 
   const handleDateBlur = () => {
@@ -46,15 +43,13 @@ const UpdateContruction = ({ children }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!dateEmpty && !typeEmpty && !panelEmpty) {
-      // const blockcapacity = (userInput.panelkwp * userInput.panels) / 1000;
-      // setUserInput({ ...userInput, capacity_kwp: blockcapacity });
       try {
         axios.put(`${process.env.API_ENDPOINT}/block/${id}`, userInput);
         router.push(`/block/${id}`);
       } catch (err) {
-        // router.push("/404");
         console.log(err);
         console.log("update failed: ", err);
+        router.push("/404");
       }
     } else {
       console.log("err");

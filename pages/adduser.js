@@ -39,7 +39,7 @@ export default function AddUser() {
     const label = e.target.name;
     const value = e.target.value;
     setSignupInput({ ...signupInput, [label]: value });
-    console.log(signupInput);
+    // console.log(signupInput);
   };
 
   //check if input fields are empty
@@ -91,7 +91,7 @@ export default function AddUser() {
         router.push(`/user/${data._id}`);
       } catch (err) {
         console.log(err);
-        // router.push('/failedlisting')
+        router.push("/404");
       }
     } else {
       console.log("err");

@@ -19,13 +19,12 @@ const Dashboard = () => {
   const router = useRouter();
 
   const decodeToken = () => {
-    console.log("Inside Header.tsx: decoding local storage token");
     let token = localStorage.getItem("token");
-    console.log("Current Token: ", token);
+    // console.log("Current Token: ", token);
 
     if (token) {
       let decodedToken = jwtDecode(token);
-      console.log("Current decoded Token", decodedToken);
+      // console.log("Current decoded Token", decodedToken);
       if (decodedToken) {
         setUserRole(decodedToken.role);
         setUserEmail(decodedToken.sub);
@@ -51,7 +50,6 @@ const Dashboard = () => {
         `${process.env.API_ENDPOINT}/block/tnc/${userEmail}`
       );
       setTnCHDB(res.data);
-      console.log(res.data);
       setLoadingTnC(true);
     } catch (err) {
       console.log(err);
@@ -71,7 +69,7 @@ const Dashboard = () => {
   }, [userEmail, userRole]);
 
   useEffect(() => {
-    console.log("dashboard: ", userLoginState.isLoggedIn);
+    // console.log("dashboard: ", userLoginState.isLoggedIn);
     if (!userLoginState.isLoggedIn) {
       router.push("/");
     }
@@ -82,26 +80,6 @@ const Dashboard = () => {
       router.push("/turnon");
     }
   }, [userRole]);
-
-  // if (userRole) {
-  //   if (userRole === "Staff") {
-  //     dashboardview = staffView;
-  //   }
-  //   if (userRole === "Admin") {
-  //     dashboardview = adminView;
-  //   }
-  //   if (userRole === "Staff") {
-  //     router.push("/turnon");
-  //   }
-  // }
-
-  // const constructionData = constructionHDB.map((blk) => {
-  //   return (
-  //     <div key={blk._id}>
-  //       <p>{blk.postalcode}</p>
-  //     </div>
-  //   );
-  // });
 
   const constructionData = () => (
     <>
@@ -120,8 +98,6 @@ const Dashboard = () => {
     </>
   );
 
-  // console.log(tncHDB);
-
   const TnCData = () => (
     <>
       <h2 className="title">Your T&amp;C Blocks</h2>
@@ -138,14 +114,6 @@ const Dashboard = () => {
       </ul>
     </>
   );
-
-  // const tncData = tncHDB.map((blk) => {
-  //   return (
-  //     <div key={blk._id}>
-  //       <p>{blk.postalcode}</p>
-  //     </div>
-  //   );
-  // });
 
   let staffView = (
     <div className="dashboardcontainer">
@@ -207,102 +175,6 @@ const Dashboard = () => {
   if (!userRole) {
     return <div></div>;
   }
-
-  // return
-
-  // return (<>{userLoginState.isLoggedIn ? (dashboardview) : ""}</>);
-
-  // if (userLoginState.isLoggedIn) {
-  //   if (userRole === "Staff") {
-  //     return (
-  //       <div className="dashboardcontainer">
-  //         <div className="dashboardnavbar">
-  //           <NavBar />
-  //         </div>
-  //         <div className="dashboardcontentcontainer">
-  //           <div className="dashboardcontent">
-  //             <div className="dashboardcontentnofooter">
-  //               <div className="dashboardtop">
-  //                 <h2 className="title">Turned On Blocks in a Year</h2>
-  //                 <Graph />
-  //               </div>
-  //               <div className="dashboardblocks">
-  //                 <div className="dashboardconstruct">
-  //                   {loadingConstruction ? (
-  //                     constructionData()
-  //                   ) : (
-  //                     <h3>Loading...</h3>
-  //                   )}
-  //                 </div>
-  //                 <div className="dashboardtnc">
-  //                   {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-  //                 </div>
-  //               </div>
-  //             </div>
-  //             <div className="dashboardfooter">
-  //               <DashFooter />
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  //   if (userRole === "Admin") {
-  //     return (
-  //       <div className="dashboardcontainer">
-  //         <div className="dashboardnavbar">
-  //           <NavBar />
-  //         </div>
-  //         <div className="dashboardcontentcontainer">
-  //           <div className="dashboardcontent">
-  //             <div className="dashboardcontentnofooter">
-  //               <div className="dashboardtop">
-  //                 <h2 className="title">Turned On Blocks in a Year</h2>
-  //                 <Graph />
-  //               </div>
-  //             </div>
-  //             <div className="dashboardfooter">
-  //               <DashFooter />
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-
-  //   if (!userRole) {
-  //     return <div></div>;
-  //   }
-  // } else {
-  //   return <div></div>;
-  // }
-
-  // return (
-  //   <div className="dashboardcontainer">
-  //     <div className="dashboardnavbar">
-  //       <NavBar />
-  //     </div>
-  //     <div className="dashboardcontentcontainer">
-  //       <div className="dashboardcontent">
-  //         <div className="dashboardtop">
-  //           <h2 className="title">Turned On Blocks in a Year</h2>
-  //           <Graph />
-  //         </div>
-  //         <div className="dashboardblocks">
-  //           <div className="dashboardconstruct">
-  //             {loadingConstruction ? constructionData() : <h3>Loading...</h3>}
-  //           </div>
-  //           <div className="dashboardtnc">
-  //             {loadingTnC ? TnCData() : <h3>Loading...</h3>}
-  //           </div>
-  //         </div>
-  //         <div className="dashboardfooter">
-  //           <DashFooter />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Dashboard;

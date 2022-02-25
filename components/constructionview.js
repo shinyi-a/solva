@@ -22,13 +22,13 @@ const ConstructionView = ({ children }) => {
   };
 
   const decodeToken = () => {
-    console.log("Inside Header.tsx: decoding local storage token");
+    // console.log("Inside Header.tsx: decoding local storage token");
     let token = localStorage.getItem("token");
-    console.log("Current Token: ", token);
+    // console.log("Current Token: ", token);
 
     if (token) {
       let decodedToken = jwtDecode(token);
-      console.log("Current decoded Token", decodedToken);
+      // console.log("Current decoded Token", decodedToken);
       if (decodedToken) {
         setUserRole(decodedToken.role);
       }

@@ -38,7 +38,6 @@ export default function Login() {
     SetLoginError(false);
     setEmptyInput(false);
     setLoginInput({ ...loginInput, [label]: value });
-    console.log(loginInput);
   };
 
   //check if input fields are empty
@@ -113,24 +112,7 @@ export default function Login() {
               router.push("/dashboard");
             }
           }
-          // if (userRole) {
-          //   if (userRole === "Auditor") {
-          //     router.push("/turnon");
-          //   } else {
-          //     router.push("/dashboard");
-          //   }
-          // }
         }
-
-        //redirect user to home page (for when user just logged in, prior not logged in before)
-        // console.log("this is stored into storage");
-        // console.log(decodedResponse.token);
-        // router.push("/dashboard");
-        // try {
-        //   router.push("/dashboard");
-        // } catch (error) {
-        //   console.log(error.message);
-        // }
       } catch (err) {
         router.push("/404");
         try {
@@ -141,14 +123,6 @@ export default function Login() {
           );
         }
       }
-      //   axios
-      //     .post(`${process.env.API_ENDPOINT}/user`, loginInput)
-      //     .then(function (response) {
-      //       console.log(response);
-      //     })
-      //     .catch(function (error) {
-      //       console.log(error);
-      //     });
     } else {
       setEmptyInput(true);
       console.log("err");

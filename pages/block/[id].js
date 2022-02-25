@@ -6,12 +6,10 @@ import ConstructionView from "../../components/constructionview";
 import TNCView from "../../components/tncview";
 import TurnonView from "../../components/turnonview";
 import Footer from "../../components/footer";
-import jwtDecode from "jwt-decode";
 import UserContext from "../../context/loginstate";
 
 const BlockDetails = () => {
   const userLoginState = useContext(UserContext);
-  const [userRole, setUserRole] = useState();
   const router = useRouter();
   const { id } = router.query;
   const [blk, setBlk] = useState({});
@@ -50,24 +48,9 @@ const BlockDetails = () => {
     }
   };
 
-  const decodeToken = () => {
-    let token = localStorage.getItem("token");
-
-    if (token) {
-      let decodedToken = jwtDecode(token);
-      if (decodedToken) {
-        setUserRole(decodedToken.role);
-      }
-    }
-  };
-
   useEffect(() => {
     checkLoginStatus();
   }, []);
-
-  useEffect(() => {
-    decodeToken();
-  }, [userLoginState]);
 
   useEffect(() => {
     if (!userLoginState.isLoggedIn) {
@@ -78,7 +61,6 @@ const BlockDetails = () => {
   if (loadingBlk && loadingMap) {
     const mapLat = parseFloat(map.LATITUDE).toFixed(5);
     const mapLng = parseFloat(map.LONGITUDE).toFixed(5);
-    // console.log(map);
     const mapURL = `https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=grey&lat=${mapLat}&lng=${mapLng}&zoom=17&height=450&width=450&points=[${mapLat},${mapLng},%22249,188,23%22,%22%22]`;
 
     if (blk.status === "Pending") {

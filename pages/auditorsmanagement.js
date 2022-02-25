@@ -101,18 +101,6 @@ const AuditorManagement = () => {
     </div>
   );
 
-  // const handleDelete = async (auditor) => {
-  //   try {
-  //     const res = await axios.delete(
-  //       `${process.env.API_ENDPOINT}/user/${auditor}`
-  //     );
-  //     // router.push("/auditorsmanagement");
-  //     router.refresh();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   const handleDelete = async (auditor) => {
     try {
       const res = await fetch(`${process.env.API_ENDPOINT}/user/${auditor}`, {
@@ -125,8 +113,8 @@ const AuditorManagement = () => {
       console.log("success");
       setDel(true);
     } catch (err) {
-      // router.push('/failedlisting')
       console.log("delete failed: ", err);
+      router.push("/404");
     }
   };
 

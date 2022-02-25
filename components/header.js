@@ -16,13 +16,10 @@ const Header = () => {
   };
 
   const decodeToken = () => {
-    console.log("Inside Header.tsx: decoding local storage token");
     let token = localStorage.getItem("token");
-    console.log("Current Token: ", token);
 
     if (token) {
       let decodedToken = jwtDecode(token);
-      console.log("Current decoded Token", decodedToken);
       if (decodedToken) {
         setUserRole(decodedToken.role);
         setUserEmail(decodedToken.email);
@@ -42,14 +39,11 @@ const Header = () => {
     checkLoginStatus();
     decodeToken();
     loadUserDetails();
-    console.log("current user role", userRole);
-    console.log("current user id" + userUserid);
   }, [userRole, userLoginState, userEmail]);
 
   //load current user details from DB
   const loadUserDetails = async () => {
     try {
-      console.log(user.email);
       const res = await axios.get(
         // `${process.env.API_ENDPOINT}/block/user/${user.firstname}`
         `${process.env.API_ENDPOINT}/block/user/${userEmail}`

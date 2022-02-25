@@ -43,13 +43,13 @@ const UpdateTurnon = ({ children }) => {
     try {
       const addedReport = await client.add(report);
       const reportUrl = `https://ipfs.infura.io/ipfs/${addedReport.path}`;
-      console.log("ipfs url: ", reportUrl);
+      // console.log("ipfs url: ", reportUrl);
       setUserInput({ ...userInput, tncreport_doc: reportUrl });
       setReportUrl(reportUrl);
       setReportEmpty(false);
     } catch (e) {
-      // router.push("/404");
       console.log("Error uploading file: ", e);
+      router.push("/404");
     }
   };
   const onDrawingUpload = async (e) => {
@@ -57,13 +57,13 @@ const UpdateTurnon = ({ children }) => {
     try {
       const addedDrawing = await client.add(drawing);
       const drawingUrl = `https://ipfs.infura.io/ipfs/${addedDrawing.path}`;
-      console.log("ipfs url: ", drawingUrl);
+      // console.log("ipfs url: ", drawingUrl);
       setUserInput({ ...userInput, asbulit_doc: drawingUrl });
       setDrawingUrl(drawingUrl);
       setDrawingEmpty(false);
     } catch (e) {
-      // router.push("/404");
       console.log("Error uploading file: ", e);
+      router.push("/404");
     }
   };
 
@@ -81,9 +81,9 @@ const UpdateTurnon = ({ children }) => {
         axios.put(`${process.env.API_ENDPOINT}/block/${id}`, userInput);
         router.push(`/block/${id}`);
       } catch (err) {
-        // router.push("/404");
         console.log(err);
         console.log("update failed: ", err);
+        router.push("/404");
       }
     } else {
       console.log("err");

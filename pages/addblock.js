@@ -1,4 +1,3 @@
-// import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import jwtDecode from "jwt-decode";
@@ -36,13 +35,12 @@ export default function AddBlock() {
 
   //check user type
   const decodeToken = () => {
-    console.log("Inside Header.tsx: decoding local storage token");
     let token = localStorage.getItem("token");
-    console.log("Current Token: ", token);
+    // console.log("Current Token: ", token);
 
     if (token) {
       let decodedToken = jwtDecode(token);
-      console.log("Current decoded Token", decodedToken);
+      // console.log("Current decoded Token", decodedToken);
       if (decodedToken) {
         setUserRole(decodedToken.role);
         setBlockInput({
@@ -63,7 +61,6 @@ export default function AddBlock() {
     const label = e.target.name;
     const value = e.target.value;
     setBlockInput({ ...blockInput, [label]: value });
-    console.log(blockInput);
   };
 
   //check if input fields are empty
@@ -82,15 +79,6 @@ export default function AddBlock() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (blockInput.postalcode && postalValid && userRole === "Staff") {
-      //   axios
-      //     .post(`${process.env.API_ENDPOINT}/block`, blockInput)
-      //     .then(function (response) {
-      //       console.log(response);
-      //       router.push(`/block/${blockInput.postalcode}`);
-      //     })
-      //     .catch(function (error) {
-      //       console.log(error);
-      //     });
       try {
         const res = await fetch(`${process.env.API_ENDPOINT}/block`, {
           method: "POST",
@@ -100,12 +88,11 @@ export default function AddBlock() {
           },
         });
         const data = await res.json();
-        console.log("this is sent to server");
-        console.log(blockInput);
+        // console.log("this is sent to server");
         router.push(`/block/${data.postalcode}`);
       } catch (err) {
         console.log(err);
-        // router.push("/failedlisting");
+        router.push("/404");
       }
     } else {
       console.log("err");

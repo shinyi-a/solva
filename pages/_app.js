@@ -6,24 +6,23 @@ import { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
   const [userLoginState, setLoginState] = useState(false);
-  // const [userRole, setUserRole] = useState({});
   const userLoginData = {
     isLoggedIn: userLoginState,
     setLoginState: (state) => setLoginState(state),
   };
 
   useEffect(() => {
-    console.log("login state: ", userLoginState);
+    // console.log("login state: ", userLoginState);
     if (!userLoginState.isLoggedIn) {
       const loggedInUser = localStorage.getItem("token");
-      console.log("llogged in user: ", loggedInUser);
+      // console.log("llogged in user: ", loggedInUser);
       if (loggedInUser) {
         setLoginState(true);
       } else {
-        console.log("no local storage found for userID");
+        // console.log("no local storage found for userID");
       }
     } else {
-      console.log("user is logged in");
+      // console.log("user is logged in");
     }
   }, [userLoginState]);
 

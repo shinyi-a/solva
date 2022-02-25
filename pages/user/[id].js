@@ -114,15 +114,6 @@ const UserDetails = () => {
           <h2 className="title">Blocks under {user.firstname}</h2>
           {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>}
         </div>
-
-        {/* {loading ? (
-        <>
-          <h4>User Type: {user.usertype}</h4>
-          <h4>Email: {user.email}</h4>
-        </>
-      ) : (
-        ""
-      )} */}
       </div>
       <Footer />
     </>

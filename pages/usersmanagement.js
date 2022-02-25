@@ -35,19 +35,6 @@ const UserManagement = () => {
     }
   }, [del]);
 
-  // const handleDelete = async (auditor) => {
-  //   try {
-  //     const res = await axios.delete(
-  //       `${process.env.API_ENDPOINT}/user/${auditor}`
-  //     );
-  //     console.log("sucessful delete");
-  //     setDel(true);
-  //     router.push("/dashboard");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   const handleDelete = async (user) => {
     try {
       const res = await fetch(`${process.env.API_ENDPOINT}/user/${user}`, {

@@ -32,14 +32,10 @@ const NavBar = () => {
 
   useEffect(() => {
     checkLoginStatus();
-    console.log("current user role", userRole);
-    console.log("current user id" + userUserid);
   }, []);
 
   useEffect(() => {
     decodeToken();
-    console.log("current user role", userRole);
-    console.log("current user id" + userUserid);
   }, [userLoginState]);
 
   if (userRole === "Staff") {

@@ -1,16 +1,8 @@
-// import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
 import jwtDecode from "jwt-decode";
 import UserContext from "../context/loginstate";
-
-// import { useAuth } from "../context/authcontext";
-// import { auth } from "../firebase";
-// import { getAuth } from "firebase/auth";
-// import app from "../firebase";
-
-// import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function AddAdmin() {
   const userLoginState = useContext(UserContext);
@@ -28,9 +20,6 @@ export default function AddAdmin() {
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
   const router = useRouter();
-
-  //   const { signup } = useAuth();
-  //   const auth = getAuth(app);
 
   //to validate email
   const validateEmail = (email) => {
@@ -50,7 +39,6 @@ export default function AddAdmin() {
     const label = e.target.name;
     const value = e.target.value;
     setSignupInput({ ...signupInput, [label]: value });
-    console.log(signupInput);
   };
 
   //check if input fields are empty
@@ -95,14 +83,6 @@ export default function AddAdmin() {
       emailValid &&
       passwordValid
     ) {
-      // axios
-      //   .post(`${process.env.API_ENDPOINT}/user`, signupInput)
-      //   .then(function (response) {
-      //     console.log(response);
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
       try {
         const res = await fetch(`${process.env.API_ENDPOINT}/user`, {
           method: "POST",
@@ -115,7 +95,7 @@ export default function AddAdmin() {
         router.push(`/user/${data._id}`);
       } catch (err) {
         console.log(err);
-        // router.push('/failedlisting')
+        router.push("/404");
       }
     } else {
       console.log("err");
