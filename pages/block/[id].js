@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import PendingView from "../../components/pendingview";
@@ -6,8 +6,12 @@ import ConstructionView from "../../components/constructionview";
 import TNCView from "../../components/tncview";
 import TurnonView from "../../components/turnonview";
 import Footer from "../../components/footer";
+import jwtDecode from "jwt-decode";
+import UserContext from "../../context/loginstate";
 
 const BlockDetails = () => {
+  const userLoginState = useContext(UserContext);
+  const [userRole, setUserRole] = useState();
   const router = useRouter();
   const { id } = router.query;
   const [blk, setBlk] = useState({});
@@ -38,6 +42,38 @@ const BlockDetails = () => {
       loadBlk();
     }
   }, [id]);
+
+  const checkLoginStatus = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      userLoginState.setLoginState(true);
+    }
+  };
+
+  const decodeToken = () => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      if (decodedToken) {
+        setUserRole(decodedToken.role);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    decodeToken();
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (!userLoginState.isLoggedIn) {
+      router.push("/");
+    }
+  }, [userLoginState]);
 
   if (loadingBlk && loadingMap) {
     const mapLat = parseFloat(map.LATITUDE).toFixed(5);

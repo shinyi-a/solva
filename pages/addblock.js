@@ -1,10 +1,14 @@
 // import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import jwtDecode from "jwt-decode";
 import Footer from "../components/footer";
+import UserContext from "../context/loginstate";
 
 export default function AddBlock() {
+  const userLoginState = useContext(UserContext);
+  const [userRole, setUserRole] = useState();
+
   const router = useRouter();
   const [blockInput, setBlockInput] = useState({
     postalcode: "",
@@ -23,7 +27,6 @@ export default function AddBlock() {
   });
   const [postalEmpty, setPostalEmpty] = useState(null);
   const [postalValid, setPostalValid] = useState(null);
-  const [userRole, setUserRole] = useState();
 
   //to validate postal length - must input 6 numbers
   const validatePostal = (pwd) => {
@@ -108,6 +111,38 @@ export default function AddBlock() {
       console.log("err");
     }
   };
+  const checkLoginStatus = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      userLoginState.setLoginState(true);
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    decodeToken();
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (!userLoginState.isLoggedIn) {
+      router.push("/");
+    }
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (userRole === "Auditor") {
+      router.push("/turnon");
+    }
+  }, [userRole]);
+
+  useEffect(() => {
+    if (userRole === "Admin") {
+      router.push("/dashboard");
+    }
+  }, [userRole]);
 
   return (
     <>

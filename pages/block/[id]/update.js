@@ -1,12 +1,16 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import UpdateContruction from "../../../components/constructioncard";
 import UpdateTnC from "../../../components/tnccard";
 import UpdateTurnon from "../../../components/turnoncard";
 import axios from "axios";
 import Footer from "../../../components/footer";
+import jwtDecode from "jwt-decode";
+import UserContext from "../../../context/loginstate";
 
 const BlockEdit = () => {
+  const userLoginState = useContext(UserContext);
+  const [userRole, setUserRole] = useState();
   const router = useRouter();
   const { id } = router.query;
   const [blk, setBlk] = useState({});
@@ -27,6 +31,50 @@ const BlockEdit = () => {
       loadBlk();
     }
   }, [id]);
+
+  const checkLoginStatus = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      userLoginState.setLoginState(true);
+    }
+  };
+
+  const decodeToken = () => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      if (decodedToken) {
+        setUserRole(decodedToken.role);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    decodeToken();
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (!userLoginState.isLoggedIn) {
+      router.push("/");
+    }
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (userRole === "Auditor") {
+      router.push("/turnon");
+    }
+  }, [userRole]);
+
+  useEffect(() => {
+    if (userRole === "Admin") {
+      router.push("/dashboard");
+    }
+  }, [userRole]);
 
   if (loadingBlk) {
     if (blk.status === "Pending") {

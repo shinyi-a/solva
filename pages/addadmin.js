@@ -1,7 +1,9 @@
 // import axios from "axios";
-import React, { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
+import jwtDecode from "jwt-decode";
+import UserContext from "../context/loginstate";
 
 // import { useAuth } from "../context/authcontext";
 // import { auth } from "../firebase";
@@ -11,6 +13,8 @@ import Footer from "../components/footer";
 // import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function AddAdmin() {
+  const userLoginState = useContext(UserContext);
+  const [userRole, setUserRole] = useState();
   const [signupInput, setSignupInput] = useState({
     firstname: "",
     email: "",
@@ -117,6 +121,50 @@ export default function AddAdmin() {
       console.log("err");
     }
   };
+
+  const checkLoginStatus = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      userLoginState.setLoginState(true);
+    }
+  };
+
+  const decodeToken = () => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      if (decodedToken) {
+        setUserRole(decodedToken.role);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    decodeToken();
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (!userLoginState.isLoggedIn) {
+      router.push("/");
+    }
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (userRole === "Auditor") {
+      router.push("/turnon");
+    }
+  }, [userRole]);
+
+  useEffect(() => {
+    if (userRole === "Staff") {
+      router.push("/dashboard");
+    }
+  }, [userRole]);
 
   return (
     <>

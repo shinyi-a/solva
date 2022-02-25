@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
+import jwtDecode from "jwt-decode";
+import UserContext from "../context/loginstate";
 
 const UserManagement = () => {
+  const userLoginState = useContext(UserContext);
+  const [userRole, setUserRole] = useState();
   const [allUsers, setAllUsers] = useState([]);
   const [loadingAll, setLoadingAll] = useState(false);
   const [del, setDel] = useState(false);
@@ -87,6 +91,44 @@ const UserManagement = () => {
       </ul>
     </div>
   );
+
+  const checkLoginStatus = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      userLoginState.setLoginState(true);
+    }
+  };
+
+  const decodeToken = () => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      if (decodedToken) {
+        setUserRole(decodedToken.role);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
+    decodeToken();
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (!userLoginState.isLoggedIn) {
+      router.push("/");
+    }
+  }, [userLoginState]);
+
+  useEffect(() => {
+    if (userRole === "Auditor") {
+      router.push("/turnon");
+    }
+  }, [userRole]);
 
   return (
     <>
