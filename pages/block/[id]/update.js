@@ -4,6 +4,7 @@ import UpdateContruction from "../../../components/constructioncard";
 import UpdateTnC from "../../../components/tnccard";
 import UpdateTurnon from "../../../components/turnoncard";
 import axios from "axios";
+import Footer from "../components/dashboardfooter";
 
 const BlockEdit = () => {
   const router = useRouter();
@@ -36,6 +37,7 @@ const BlockEdit = () => {
             <h3>Postal Code: {id}</h3>
             <UpdateContruction>{blk}</UpdateContruction>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -47,6 +49,7 @@ const BlockEdit = () => {
             <h3>Postal Code: {id}</h3>
             <UpdateTnC>{blk}</UpdateTnC>
           </div>
+          <Footer />
         </div>
       );
     }
@@ -58,6 +61,7 @@ const BlockEdit = () => {
             <h3>Postal Code: {id}</h3>
             <UpdateTurnon>{blk}</UpdateTurnon>
           </div>
+          <Footer />
         </div>
       );
     }

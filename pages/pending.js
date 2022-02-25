@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "../components/dashboardfooter";
 
 const Pending = ({ hdbblocks }) => {
   return (
@@ -15,6 +16,7 @@ const Pending = ({ hdbblocks }) => {
           ))}
         </ul>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "../components/dashboardfooter";
 
 const TnC = ({ hdbblocks }) => {
   return (
@@ -15,6 +16,7 @@ const TnC = ({ hdbblocks }) => {
           ))}
         </ul>
       </div>
+      <Footer />
     </div>
   );
 };

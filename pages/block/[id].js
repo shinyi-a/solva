@@ -5,6 +5,7 @@ import PendingView from "../../components/pendingview";
 import ConstructionView from "../../components/constructionview";
 import TNCView from "../../components/tncview";
 import TurnonView from "../../components/turnonview";
+import Footer from "../components/dashboardfooter";
 
 const BlockDetails = () => {
   const router = useRouter();
@@ -66,6 +67,7 @@ const BlockDetails = () => {
               </div>
             </div>
           </section>
+          <Footer />
         </div>
       );
     }
@@ -91,6 +93,7 @@ const BlockDetails = () => {
               </div>
             </div>
           </section>
+          <Footer />
         </div>
       );
     }
@@ -116,6 +119,7 @@ const BlockDetails = () => {
               </div>
             </div>
           </section>
+          <Footer />
         </div>
       );
     }
@@ -141,6 +145,7 @@ const BlockDetails = () => {
               </div>
             </div>
           </section>
+          <Footer />
         </div>
       );
     }

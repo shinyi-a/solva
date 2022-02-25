@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Footer from "../components/dashboardfooter";
+
 // import Link from "next/link";
 
 const Account = () => {
@@ -72,6 +74,7 @@ const Account = () => {
         )}
         {/* {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>} */}
       </div>
+      <Footer />
     </div>
   );
 };

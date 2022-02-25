@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Footer from "../components/dashboardfooter";
 
 const NotFound = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const NotFound = () => {
   return (
     <>
       <h1>Oops! Page not found.</h1>
+      <Footer />
     </>
   );
 };

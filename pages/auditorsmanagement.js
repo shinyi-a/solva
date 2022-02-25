@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Footer from "../components/dashboardfooter";
 
 const AuditorManagement = () => {
   const [allAuditors, setAllAuditors] = useState([]);
@@ -103,6 +104,7 @@ const AuditorManagement = () => {
         </div>
         {loadingAll ? allData() : <h3>Loading...</h3>}
       </div>
+      <Footer />
     </div>
   );
 };

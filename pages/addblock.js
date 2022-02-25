@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import jwtDecode from "jwt-decode";
+import Footer from "../components/dashboardfooter";
 
 export default function AddBlock() {
   const router = useRouter();
@@ -138,6 +139,7 @@ export default function AddBlock() {
           <input type="submit" name="submitAddBlock" id="submitAddBlock" />
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

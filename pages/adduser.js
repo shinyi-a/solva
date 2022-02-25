@@ -1,6 +1,7 @@
 // import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Footer from "../components/dashboardfooter";
 
 export default function AddUser() {
   const router = useRouter();
@@ -160,6 +161,7 @@ export default function AddUser() {
           <input type="submit" name="submitSignup" id="submitSignup" />
         </form>
       </div>
+      <Footer />
     </div>
   );
 }
