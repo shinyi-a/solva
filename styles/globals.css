@@ -419,6 +419,18 @@ li.headerli {
   min-height: calc(100vh - 208px);
 }
 
+.userblockcontainer {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-height: calc(100vh - 208px);
+}
+
+.usercontent {
+  margin-bottom: 20px;
+}
+
 .accountCard {
   /* width: 200px; */
   min-width: 50%;

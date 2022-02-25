@@ -61,8 +61,12 @@ const UserDetails = () => {
 
   return (
     <>
-      <div className="usercontainer">
-        <h1>{user.firstname}</h1>
+      <div className="userblockcontainer">
+        <div className="usercontent">
+          <h2 className="title">Blocks under {user.firstname}</h2>
+          {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>}
+        </div>
+
         {/* {loading ? (
         <>
           <h4>User Type: {user.usertype}</h4>
@@ -71,7 +75,6 @@ const UserDetails = () => {
       ) : (
         ""
       )} */}
-        {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>}
       </div>
       <Footer />
     </>

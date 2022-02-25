@@ -47,106 +47,114 @@ const BlockDetails = () => {
 
     if (blk.status === "Pending") {
       return (
-        <div className="cardcontainer">
-          <section>
-            <div className="cardcontent">
-              <h2 className="title">{id}</h2>
-              <h3>
-                Block Status:{" "}
-                <span className="statushighlightpen">{blk.status}</span>
-              </h3>
-              <div className="mapplacement">
-                <img src={mapURL} />
+        <>
+          <div className="cardcontainer">
+            <section>
+              <div className="cardcontent">
+                <h2 className="title">{id}</h2>
+                <h3>
+                  Block Status:{" "}
+                  <span className="statushighlightpen">{blk.status}</span>
+                </h3>
+                <div className="mapplacement">
+                  <img src={mapURL} />
+                </div>
+                <div className="carddetails">
+                  <p>
+                    Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                    {map.POSTAL}
+                  </p>
+                  <PendingView>{{ blk, id }}</PendingView>
+                </div>
               </div>
-              <div className="carddetails">
-                <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
-                  {map.POSTAL}
-                </p>
-                <PendingView>{{ blk, id }}</PendingView>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
           <Footer />
-        </div>
+        </>
       );
     }
     if (loadingBlk && blk.status === "Construction") {
       return (
-        <div className="cardcontainer">
-          <section>
-            <div className="cardcontent">
-              <h2 className="title">{id}</h2>
-              <h3>
-                Block Status:{" "}
-                <span className="statushighlightcon">{blk.status}</span>
-              </h3>
-              <div className="mapplacement">
-                <img src={mapURL} />
+        <>
+          <div className="cardcontainer">
+            <section>
+              <div className="cardcontent">
+                <h2 className="title">{id}</h2>
+                <h3>
+                  Block Status:{" "}
+                  <span className="statushighlightcon">{blk.status}</span>
+                </h3>
+                <div className="mapplacement">
+                  <img src={mapURL} />
+                </div>
+                <div className="carddetails">
+                  <p>
+                    Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                    {map.POSTAL}
+                  </p>
+                  <ConstructionView>{{ blk, id }}</ConstructionView>
+                </div>
               </div>
-              <div className="carddetails">
-                <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
-                  {map.POSTAL}
-                </p>
-                <ConstructionView>{{ blk, id }}</ConstructionView>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
           <Footer />
-        </div>
+        </>
       );
     }
     if (loadingBlk && blk.status === "Testing and Commissioning") {
       return (
-        <div className="cardcontainer">
-          <section>
-            <div className="cardcontent">
-              <h2 className="title">{id}</h2>
-              <h3>
-                Block Status:{" "}
-                <span className="statushighlighttnc">{blk.status}</span>
-              </h3>
-              <div className="mapplacement">
-                <img src={mapURL} />
+        <>
+          <div className="cardcontainer">
+            <section>
+              <div className="cardcontent">
+                <h2 className="title">{id}</h2>
+                <h3>
+                  Block Status:{" "}
+                  <span className="statushighlighttnc">{blk.status}</span>
+                </h3>
+                <div className="mapplacement">
+                  <img src={mapURL} />
+                </div>
+                <div className="carddetails">
+                  <p>
+                    Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                    {map.POSTAL}
+                  </p>
+                  <TNCView>{{ blk, id }}</TNCView>
+                </div>
               </div>
-              <div className="carddetails">
-                <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
-                  {map.POSTAL}
-                </p>
-                <TNCView>{{ blk, id }}</TNCView>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
           <Footer />
-        </div>
+        </>
       );
     }
     if (loadingBlk && blk.status === "Turned On") {
       return (
-        <div className="cardcontainer">
-          <section>
-            <div className="cardcontent">
-              <h2 className="title">{id}</h2>
-              <h3>
-                Block Status:{" "}
-                <span className="statushighlighton">{blk.status}</span>
-              </h3>
-              <div className="mapplacement">
-                <img src={mapURL} />
+        <>
+          <div className="cardcontainer">
+            <section>
+              <div className="cardcontent">
+                <h2 className="title">{id}</h2>
+                <h3>
+                  Block Status:{" "}
+                  <span className="statushighlighton">{blk.status}</span>
+                </h3>
+                <div className="mapplacement">
+                  <img src={mapURL} />
+                </div>
+                <div className="carddetails">
+                  <p>
+                    Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
+                    {map.POSTAL}
+                  </p>
+                  <TurnonView>{blk}</TurnonView>
+                </div>
               </div>
-              <div className="carddetails">
-                <p>
-                  Address: BLOCK {map.BLK_NO}, {map.ROAD_NAME}, SINGAPORE{" "}
-                  {map.POSTAL}
-                </p>
-                <TurnonView>{blk}</TurnonView>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
           <Footer />
-        </div>
+        </>
       );
     }
   } else {

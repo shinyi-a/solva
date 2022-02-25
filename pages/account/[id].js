@@ -66,7 +66,7 @@ const Account = () => {
         <div className="accountCard">
           {loading ? (
             <>
-              <h2 className="title">{user.firstname}</h2>
+              <h2 className="title">Hello, {user.firstname}.</h2>
               <h3>User Type: {user.usertype}</h3>
               <h3>Email: {user.email}</h3>
             </>
