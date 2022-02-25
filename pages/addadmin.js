@@ -150,7 +150,7 @@ export default function AddAdmin() {
 
   useEffect(() => {
     if (!userLoginState.isLoggedIn) {
-      router.push("/");
+      router.push("/404");
     }
   }, [userLoginState]);
 

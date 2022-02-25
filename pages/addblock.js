@@ -128,7 +128,7 @@ export default function AddBlock() {
 
   useEffect(() => {
     if (!userLoginState.isLoggedIn) {
-      router.push("/");
+      router.push("/404");
     }
   }, [userLoginState]);
 
