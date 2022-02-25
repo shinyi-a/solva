@@ -2,9 +2,11 @@ import Header from "./header";
 import Footer from "./footer";
 
 const Layout = ({ children }) => {
-  if (children.type.name === "Home") {
+  let ftype = children.type;
+  let fname = ftype.name;
+  if (fname === "Home") {
     return <div>{children}</div>;
-  } else if (children.type.name === "Dashboard") {
+  } else if (fname === "Dashboard") {
     return (
       <>
         <Header />
