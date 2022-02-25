@@ -1,23 +1,25 @@
 import Link from "next/link";
-import Footer from "../components/dashboardfooter";
+import Footer from "../components/footer";
 
 const Turnon = ({ hdbblocks }) => {
   return (
-    <div className="blockviewcontainer">
-      <div className="blockview">
-        <h2 className="title">All Turned On Blocks</h2>
-        <ul>
-          {hdbblocks.map((blk) => (
-            <Link href={`/block/${blk.postalcode}`} key={blk._id}>
-              <li key={blk._id}>
-                <span className="postalhighlight">{blk.postalcode}</span>
-              </li>
-            </Link>
-          ))}
-        </ul>
+    <>
+      <div className="blockviewcontainer">
+        <div className="blockview">
+          <h2 className="title">All Turned On Blocks</h2>
+          <ul>
+            {hdbblocks.map((blk) => (
+              <Link href={`/block/${blk.postalcode}`} key={blk._id}>
+                <li key={blk._id}>
+                  <span className="postalhighlight">{blk.postalcode}</span>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

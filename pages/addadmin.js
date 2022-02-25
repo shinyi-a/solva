@@ -1,7 +1,7 @@
 // import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import Footer from "../components/dashboardfooter";
+import Footer from "../components/footer";
 
 // import { useAuth } from "../context/authcontext";
 // import { auth } from "../firebase";
@@ -200,8 +200,8 @@ export default function AddAdmin() {
             <input type="submit" name="submitSignup" id="submitSignup" />
           </form>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }

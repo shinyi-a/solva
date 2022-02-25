@@ -61,21 +61,23 @@ const Account = () => {
   //   }, [loading]);
 
   return (
-    <div className="accountContainer">
-      <div className="accountCard">
-        {loading ? (
-          <>
-            <h2 className="title">{user.firstname}</h2>
-            <h3>User Type: {user.usertype}</h3>
-            <h3>Email: {user.email}</h3>
-          </>
-        ) : (
-          ""
-        )}
-        {/* {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>} */}
+    <>
+      <div className="accountContainer">
+        <div className="accountCard">
+          {loading ? (
+            <>
+              <h2 className="title">{user.firstname}</h2>
+              <h3>User Type: {user.usertype}</h3>
+              <h3>Email: {user.email}</h3>
+            </>
+          ) : (
+            ""
+          )}
+          {/* {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>} */}
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

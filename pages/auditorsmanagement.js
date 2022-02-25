@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Footer from "../components/dashboardfooter";
+import Footer from "../components/footer";
 
 const AuditorManagement = () => {
   const [allAuditors, setAllAuditors] = useState([]);
@@ -89,23 +89,25 @@ const AuditorManagement = () => {
   };
 
   return (
-    <div className="managementcontainer">
-      <div className="managementpanel">
-        <h2 className="title">Auditors Management</h2>
-        <div className="adduserbar">
-          <Link href="/adduser">
-            <a>
-              <button className="adduser">
-                <span className="material-icons md-24">&#xe7fe;</span> Add
-                Auditor
-              </button>
-            </a>
-          </Link>
+    <>
+      <div className="managementcontainer">
+        <div className="managementpanel">
+          <h2 className="title">Auditors Management</h2>
+          <div className="adduserbar">
+            <Link href="/adduser">
+              <a>
+                <button className="adduser">
+                  <span className="material-icons md-24">&#xe7fe;</span> Add
+                  Auditor
+                </button>
+              </a>
+            </Link>
+          </div>
+          {loadingAll ? allData() : <h3>Loading...</h3>}
         </div>
-        {loadingAll ? allData() : <h3>Loading...</h3>}
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

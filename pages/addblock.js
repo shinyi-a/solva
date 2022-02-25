@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import jwtDecode from "jwt-decode";
-import Footer from "../components/dashboardfooter";
+import Footer from "../components/footer";
 
 export default function AddBlock() {
   const router = useRouter();
@@ -110,36 +110,38 @@ export default function AddBlock() {
   };
 
   return (
-    <div className="addcontainer">
-      <div className="addcard">
-        <h2 className="title">Add New Block</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="postalcode">Postal Code: </label>
-          <input
-            type="number"
-            name="postalcode"
-            id="postalcode"
-            min="0"
-            onChange={handleChange}
-            onBlur={handlePostalBlur}
-            placeholder="Postal Code"
-          />
-          <br />
-          {postalEmpty ? (
-            <span className="warning">Please enter postal code.</span>
-          ) : (
-            ""
-          )}
-          {postalValid === false ? (
-            <span className="warning">Please enter a 6 digit number.</span>
-          ) : (
-            ""
-          )}
-          <br />
-          <input type="submit" name="submitAddBlock" id="submitAddBlock" />
-        </form>
+    <>
+      <div className="addcontainer">
+        <div className="addcard">
+          <h2 className="title">Add New Block</h2>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="postalcode">Postal Code: </label>
+            <input
+              type="number"
+              name="postalcode"
+              id="postalcode"
+              min="0"
+              onChange={handleChange}
+              onBlur={handlePostalBlur}
+              placeholder="Postal Code"
+            />
+            <br />
+            {postalEmpty ? (
+              <span className="warning">Please enter postal code.</span>
+            ) : (
+              ""
+            )}
+            {postalValid === false ? (
+              <span className="warning">Please enter a 6 digit number.</span>
+            ) : (
+              ""
+            )}
+            <br />
+            <input type="submit" name="submitAddBlock" id="submitAddBlock" />
+          </form>
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }

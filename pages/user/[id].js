@@ -60,9 +60,10 @@ const UserDetails = () => {
   }, [loading]);
 
   return (
-    <div>
-      <h1>{user.firstname}</h1>
-      {/* {loading ? (
+    <>
+      <div className="usercontainer">
+        <h1>{user.firstname}</h1>
+        {/* {loading ? (
         <>
           <h4>User Type: {user.usertype}</h4>
           <h4>Email: {user.email}</h4>
@@ -70,9 +71,10 @@ const UserDetails = () => {
       ) : (
         ""
       )} */}
-      {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>}
+        {loadingBlocks ? allProjectBlocks() : <h4>loading</h4>}
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

@@ -351,7 +351,7 @@ li.headerli {
 .normalfooter {
   bottom: 0;
   width: 90%;
-  padding: 0px 0px 15px 0px;
+  padding-bottom: 15px;
 }
 
 .dashboardfooter {
@@ -411,7 +411,9 @@ li.headerli {
 .blockviewcontainer,
 .managementcontainer,
 .cardcontainer,
-.accountContainer {
+.accountContainer,
+.usercontainer,
+.notfoundcontainer {
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 208px);
@@ -465,8 +467,8 @@ li.headerli {
 }
 
 .managementpanel {
-  min-width: 700px;
-  width: 50%;
+  min-width: 800px;
+  width: 80%;
   text-align: center;
 }
 
@@ -491,6 +493,7 @@ li.headerli {
 .useremail,
 .userusertype {
   width: 33.33%;
+  min-width: 150px;
   display: flex;
   justify-content: center;
   align-self: center;
