@@ -13,7 +13,19 @@ const NotFound = () => {
   return (
     <>
       <div className="notfoundcontainer">
-        <h1>Oops! Page not found.</h1>
+        <div className="notfoundcard">
+          <div className="notfoundnum">
+            <span className="notfoundtitle">4</span>
+            <img
+              className="moonimg"
+              src="/crescent-moon.png"
+              width="150px"
+              height="150px"
+            />
+            <span className="notfoundtitle">4</span>
+          </div>
+          <h1>Oops! Page not found.</h1>
+        </div>
       </div>
       <Footer />
     </>

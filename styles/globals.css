@@ -412,11 +412,34 @@ li.headerli {
 .managementcontainer,
 .cardcontainer,
 .accountContainer,
-.usercontainer,
-.notfoundcontainer {
+.usercontainer {
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 208px);
+}
+
+.notfoundcontainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-height: calc(100vh - 80px);
+}
+
+.notfoundcard {
+  /* height: fit-content; */
+  text-align: center;
+  margin: auto;
+}
+
+.notfoundnum {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+}
+
+.moonimg {
+  margin: auto;
 }
 
 .userblockcontainer {
@@ -540,4 +563,9 @@ li.headerli {
 .dashboardtncpostal,
 .dashboardtncdate {
   min-width: 30%;
+}
+
+.notfoundtitle {
+  font-size: 200px;
+  color: #676f72;
 }
