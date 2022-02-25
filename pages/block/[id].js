@@ -5,7 +5,7 @@ import PendingView from "../../components/pendingview";
 import ConstructionView from "../../components/constructionview";
 import TNCView from "../../components/tncview";
 import TurnonView from "../../components/turnonview";
-import Footer from "../components/dashboardfooter";
+import Footer from "../../components/footer";
 
 const BlockDetails = () => {
   const router = useRouter();

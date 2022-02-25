@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import Footer from "../components/dashboardfooter";
+import Footer from "../../components/footer";
 
 // import Link from "next/link";
 

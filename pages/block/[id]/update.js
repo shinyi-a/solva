@@ -4,7 +4,7 @@ import UpdateContruction from "../../../components/constructioncard";
 import UpdateTnC from "../../../components/tnccard";
 import UpdateTurnon from "../../../components/turnoncard";
 import axios from "axios";
-import Footer from "../components/dashboardfooter";
+import Footer from "../../../components/footer";
 
 const BlockEdit = () => {
   const router = useRouter();
