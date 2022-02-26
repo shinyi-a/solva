@@ -5,6 +5,7 @@ import jwtDecode from "jwt-decode";
 import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
   const { id } = router.query;
   const userLoginState = useContext(UserContext);
   const [userRole, setUserRole] = useState();
