@@ -94,7 +94,7 @@ const Header = () => {
             </li>
             <li className="headerli">
               <div className="headericonlast">
-                <Link href="/">
+                <Link href="">
                   <a onClick={handleLogoutClick}>
                     <span className="material-icons md-36">&#xe9ba;</span>
                   </a>
@@ -142,7 +142,7 @@ const Header = () => {
             </li>
             <li className="headerli">
               <div className="headericonlast">
-                <Link href="/">
+                <Link href="">
                   <a onClick={handleLogoutClick}>
                     <span className="material-icons md-36">&#xe9ba;</span>
                   </a>
@@ -181,7 +181,7 @@ const Header = () => {
             </li>
             <li className="headerli">
               <div className="headericonlast">
-                <Link href="/">
+                <Link href="">
                   <a onClick={handleLogoutClick}>
                     <span className="material-icons md-36">&#xe9ba;</span>
                   </a>
