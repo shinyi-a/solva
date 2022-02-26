@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import UserContext from "../context/loginstate";
 import jwtDecode from "jwt-decode";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const { id } = router.query;
   const userLoginState = useContext(UserContext);
   const [userRole, setUserRole] = useState();
   const [userEmail, setUserEmail] = useState();
@@ -200,7 +202,7 @@ const Header = () => {
   if (userRole === "Auditor") {
     return auditorHeader;
   }
-  if (!userRole) {
+  if (!userRole || id === "404") {
     return <div></div>;
   }
 };
