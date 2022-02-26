@@ -89,7 +89,7 @@ export default function AddBlock() {
         });
         const data = await res.json();
         // console.log("this is sent to server");
-        router.push(`/block/${data.postalcode}`);
+        router.push(`/block/${blockInput.postalcode}`);
       } catch (err) {
         console.log(err);
         router.push("/404");
