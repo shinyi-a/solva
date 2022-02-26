@@ -16,7 +16,7 @@ const Header = () => {
     localStorage.clear();
     userLoginState.setLoginState(false);
     setUserRole("");
-    router.push("/a");
+    router.push("/");
   };
 
   const decodeToken = () => {
