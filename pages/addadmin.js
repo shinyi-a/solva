@@ -12,6 +12,7 @@ export default function AddAdmin() {
     email: "",
     password: "",
     usertype: "",
+    demo: false,
   });
   const [firstnameEmpty, setFirstnameEmpty] = useState(null);
   const [emailEmpty, setEmailEmpty] = useState(null);
@@ -92,7 +93,8 @@ export default function AddAdmin() {
           },
         });
         const data = await res.json();
-        router.push(`/user/${data._id}`);
+        // router.push(`/user/${data._id}`);
+        router.push("/usersmanagement");
       } catch (err) {
         console.log(err);
         router.push("/404");
@@ -223,7 +225,11 @@ export default function AddAdmin() {
               <option value="Auditor">Auditor</option>
             </select>
             <br />
-            {userRoleEmpty ? <span>Please select a user role.</span> : ""}
+            {userRoleEmpty ? (
+              <span className="warning">Please select a user role.</span>
+            ) : (
+              ""
+            )}
             <br />
             <input type="submit" name="submitSignup" id="submitSignup" />
           </form>

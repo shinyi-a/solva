@@ -14,6 +14,7 @@ export default function AddUser() {
     email: "",
     password: "",
     usertype: "Auditor",
+    demo: false,
   });
   const [firstnameEmpty, setFirstnameEmpty] = useState(null);
   const [emailEmpty, setEmailEmpty] = useState(null);
@@ -88,7 +89,8 @@ export default function AddUser() {
           },
         });
         const data = await res.json();
-        router.push(`/user/${data._id}`);
+        // router.push(`/user/${data._id}`);
+        router.push("/auditorsmanagement");
       } catch (err) {
         console.log(err);
         router.push("/404");

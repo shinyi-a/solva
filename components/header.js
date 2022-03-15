@@ -143,16 +143,11 @@ const Header = () => {
             </li>
             <li className="headerli">
               <div className="headericonlast">
-                {/* <Link href="/"> */}
-                {/* <a onClick={handleLogoutClick}> */}
-                <span
-                  onClick={handleLogoutClick}
-                  className="material-icons md-36"
-                >
-                  &#xe9ba;
-                </span>
-                {/* </a> */}
-                {/* </Link> */}
+                <Link href="/">
+                  <a onClick={handleLogoutClick}>
+                    <span className="material-icons md-36">&#xe9ba;</span>
+                  </a>
+                </Link>
               </div>
             </li>
           </ul>

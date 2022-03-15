@@ -10,7 +10,9 @@ const UserManagement = () => {
   const userLoginState = useContext(UserContext);
   const [userRole, setUserRole] = useState();
   const [allUsers, setAllUsers] = useState([]);
+  const [allDemo, setAllDemo] = useState([]);
   const [loadingAll, setLoadingAll] = useState(false);
+  const [loadingDemo, setLoadingDemo] = useState(false);
   const [del, setDel] = useState(false);
   const router = useRouter();
 
@@ -24,8 +26,19 @@ const UserManagement = () => {
     }
   };
 
+  const loadDemo = async () => {
+    try {
+      const res = await axios.get(`${process.env.API_ENDPOINT}/user/demo`);
+      setAllDemo(res.data);
+      setLoadingDemo(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     loadAll();
+    loadDemo();
   }, []);
 
   useEffect(() => {
@@ -52,31 +65,59 @@ const UserManagement = () => {
   };
 
   const allData = () => (
-    <div className="usercontainer">
-      <ul>
-        {allUsers.map((user) => (
-          <li key={user._id}>
-            <div className="useritem">
-              <Link href={`/user/${user._id}`}>
-                <a className="userlink">
-                  <div className="userfirstname">{user.firstname}</div>
-                  <div className="useremail">{user.email}</div>
-                  <div className="userusertype">{user.usertype}</div>
-                </a>
-              </Link>
-              <div className="userdel">
+    // <div className="usercontainer">
+    <ul>
+      {allUsers.map((user) => (
+        <li key={user._id}>
+          <div className="useritem">
+            {/* <Link href={`/user/${user._id}`}>
+              <a className="userlink"> */}
+            <div className="userfirstname">{user.firstname}</div>
+            <div className="useremail">{user.email}</div>
+            <div className="userusertype">{user.usertype}</div>
+            {/* </a>
+            </Link> */}
+            <div className="userdel">
+              <button
+                className="userdelbtn"
+                onClick={() => handleDelete(user._id)}
+              >
+                Delete User
+              </button>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+    // </div>
+  );
+
+  const allDemoUsers = () => (
+    // <div className="usercontainer">
+    <ul>
+      {allDemo.map((user) => (
+        <li key={user._id}>
+          <div className="useritem">
+            <Link href={`/user/${user._id}`}>
+              <a className="userlink">
+                <div className="userfirstname">{user.firstname}</div>
+                <div className="useremail">{user.email}</div>
+                <div className="userusertype">{user.usertype}</div>
+              </a>
+            </Link>
+            {/* <div className="userdel">
                 <button
                   className="userdelbtn"
                   onClick={() => handleDelete(user._id)}
                 >
                   Delete User
                 </button>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+              </div> */}
+          </div>
+        </li>
+      ))}
+    </ul>
+    // </div>
   );
 
   const checkLoginStatus = () => {
@@ -132,7 +173,12 @@ const UserManagement = () => {
               </a>
             </Link>
           </div>
-          {loadingAll ? allData() : <h3>Loading...</h3>}
+          <div className="usercontainer">
+            <ul>
+              {loadingDemo ? allDemoUsers() : <h3>Loading...</h3>}
+              {loadingAll ? allData() : <h3>Loading...</h3>}
+            </ul>
+          </div>
         </div>
       </div>
       <Footer />

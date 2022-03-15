@@ -97,15 +97,15 @@ const UserDetails = () => {
 
   useEffect(() => {
     if (userRole === "Auditor") {
-      router.push("/turnon");
+      router.push("/404");
     }
   }, [userRole]);
 
-  useEffect(() => {
-    if (userRole === "Admin") {
-      router.push("/dashboard");
-    }
-  }, [userRole]);
+  // useEffect(() => {
+  //   if (userRole === "Admin") {
+  //     router.push("/dashboard");
+  //   }
+  // }, [userRole]);
 
   return (
     <>

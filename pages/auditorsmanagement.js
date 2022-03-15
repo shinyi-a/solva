@@ -79,13 +79,13 @@ const AuditorManagement = () => {
         {allAuditors.map((user) => (
           <li key={user._id}>
             <div className="useritem">
-              <Link href={`/user/${user._id}`}>
-                <a className="userlink">
-                  <div className="userfirstname">{user.firstname}</div>
-                  <div className="useremail">{user.email}</div>
-                  <div className="userusertype">{user.usertype}</div>
-                </a>
-              </Link>
+              {/* <Link href={`/user/${user._id}`}>
+                <a className="userlink"> */}
+              <div className="userfirstname">{user.firstname}</div>
+              <div className="useremail">{user.email}</div>
+              <div className="userusertype">{user.usertype}</div>
+              {/* </a>
+              </Link> */}
               <div className="userdel">
                 <button
                   className="userdelbtn"

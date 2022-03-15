@@ -26,6 +26,7 @@ export default function AddBlock() {
   });
   const [postalEmpty, setPostalEmpty] = useState(null);
   const [postalValid, setPostalValid] = useState(null);
+  const [existingBlk, setExistingBlk] = useState(null);
 
   //to validate postal length - must input 6 numbers
   const validatePostal = (pwd) => {
@@ -91,11 +92,13 @@ export default function AddBlock() {
         // console.log("this is sent to server");
         router.push(`/block/${blockInput.postalcode}`);
       } catch (err) {
+        console.log("this is err");
         console.log(err);
         router.push("/404");
       }
     } else {
       console.log("err");
+      console.log(err);
     }
   };
   const checkLoginStatus = () => {
