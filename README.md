@@ -1,10 +1,10 @@
 # [☀︎SOLVA](https://solva.vercel.app/) - A project management dashboard for SolarNova Project (Solar Photovoltaic (PV) System Installation)
 ## Preface
 I was inspired to develop this project management dashboard from my time as a project engineer on [SolarNova](https://www.hdb.gov.sg/about-us/our-role/smart-and-sustainable-living/solarnova-page) the project. This dashboard is designed for projects with multiple small project sites, and based on the use case for the SolarNova project. It is able to track the different milestones dates, show overall completion graph, upload/download documents and for the Project Managers, able to know which project sites to prioritise at a glance.
-</br></br>
+</br>
 #### Brief description of project:
 Each project site is a HDB block, represented by a postal code.
-</br></br>
+</br>
 Project lifecycle: 
 Pending (not started yet) > Under construction > Ready for testing and commissioning > System turn on (project completion)
 
