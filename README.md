@@ -33,15 +33,15 @@ There are 3 different user roles and views for the dashboard – Admin, Project 
 - Auditor is only able to download the test reports and as-built drawings.
 
 ## Features
-####Log in page. Checks if you are already logged in previously, if yes, it will redirect you directly to the dashboard page. If you are a logged in Auditor, you will be redirected to the Turn On page.
+#### Log in page. Checks if you are already logged in previously, if yes, it will redirect you directly to the dashboard page. If you are a logged in Auditor, you will be redirected to the Turn On page.
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/login.jpg)
-####Shows the overall progress of the project over a 1 year span. The months the graph is showing depends on the current month you are viewing it in.
+#### Shows the overall progress of the project over a 1 year span. The months the graph is showing depends on the current month you are viewing it in.
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/graph.jpg)
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/blocks.jpg)
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/turnon.jpg)
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/cardview.jpg)
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/update.jpg)
-####Admin and Staff roles can use this to manage the dashboard users.
+#### Admin and Staff roles can use this to manage the dashboard users.
 ![Alt Text](https://github.com/shinyi-a/readmeStorage/blob/main/solva/usermanagement.jpg)
 
 ## Technologies used
